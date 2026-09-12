@@ -39,14 +39,18 @@ router.get('/portfolio.html', (req, res) => {
  * asset and nav link in the markup is relative ("css/main.css", "portfolio.html"),
  * and a path like /portfolio/<slug> would resolve all of them one level deep.
  */
-router.get('/portfolio-details.html', (req, res, next) => {
+router.get('/portfolio-details.html', (req, res) => {
   const slug = String(req.query.slug || '').trim();
 
   // No slug: send visitors to the listing rather than guessing a project.
   if (!slug) return res.redirect('/portfolio.html');
 
   const locals = pageData.projectPage(slug);
-  if (!locals) return next();
+
+  // Answer here rather than falling through: the original portfolio-details.html
+  // still sits in the static directory, and passing the request on would serve
+  // that stale file for any unknown or hidden project.
+  if (!locals) return res.status(404).render('public/portfolio', pageData.portfolioPage());
 
   return res.render('public/portfolio-details', locals);
 });

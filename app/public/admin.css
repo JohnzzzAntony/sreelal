@@ -585,3 +585,20 @@ body.admin {
 .d-inline {
     display: inline;
 }
+
+.admin-form__section {
+    margin: 2rem 0 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--admin-border);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--admin-muted);
+}
+
+.admin-form__section:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}

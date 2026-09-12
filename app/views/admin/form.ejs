@@ -40,15 +40,22 @@ function fieldValue(field) {
         <input type="hidden" name="<%= resource.parentKey %>" value="<%= parent.id %>">
     <% } %>
 
+    <% var openSection = null; %>
     <% resource.fields.forEach(function (field) { %>
         <% var value = fieldValue(field); var error = errors[field.name]; %>
+
+        <% if ((field.section || null) !== openSection) { openSection = field.section || null; %>
+            <% if (openSection) { %>
+                <h2 class="admin-form__section"><%= openSection %></h2>
+            <% } %>
+        <% } %>
 
         <div class="admin-field <%= error ? 'has-error' : '' %> <%= field.advanced ? 'admin-field--advanced' : '' %>">
             <label class="admin-field__label" for="field-<%= field.name %>">
                 <%= field.label %><% if (field.required) { %> <span class="admin-required">*</span><% } %>
             </label>
 
-            <% if (field.type === 'textarea' || field.type === 'tags' || field.type === 'gallery') { %>
+            <% if (field.type === 'textarea' || field.type === 'tags' || field.type === 'gallery' || field.type === 'lines') { %>
                 <textarea class="admin-input admin-input--area" id="field-<%= field.name %>"
                           name="<%= field.name %>" rows="<%= field.rows || 4 %>"><%= value %></textarea>
 

@@ -351,30 +351,114 @@ const resources = {
         type: 'text',
         help: 'The pill on the card overlay. Often differs from the filter category.'
       },
-      { name: 'short_description', label: 'Short description', type: 'textarea', rows: 3 },
       {
-        name: 'full_description',
-        label: 'Full description',
+        name: 'short_description',
+        label: 'Short description',
         type: 'textarea',
-        rows: 10,
-        help: 'Stored for the project detail page, which is still a static file. Not shown on the portfolio grid.'
+        rows: 3,
+        help: 'Shown on the grid card and in other projects\' "Related projects" strips.'
       },
       { name: 'cover_image', label: 'Cover image', type: 'image' },
       { name: 'cover_alt', label: 'Cover alt text', type: 'text' },
+      { name: 'badge_text', label: 'Badge', type: 'text', help: 'Corner ribbon, e.g. "FEATURED CASE". Leave empty for none.' },
+      { name: 'cta_label', label: 'Call-to-action label', type: 'text' },
+      VISIBILITY_FIELD,
+
+      // ---- Detail page -----------------------------------------------------
+      {
+        name: 'page_title',
+        label: 'Browser tab title',
+        type: 'text',
+        section: 'Detail page',
+        help: 'The <title> of this project\'s page.'
+      },
+      { name: 'meta_description', label: 'Meta description', type: 'textarea', rows: 2, section: 'Detail page' },
+      {
+        name: 'hero_subtitle',
+        label: 'Subtitle',
+        type: 'text',
+        section: 'Detail page',
+        help: 'The line under the project name, e.g. "UI/UX Design · Mobile UI · Real Estate UX".'
+      },
+      {
+        name: 'hero_superscript',
+        label: 'Title superscript',
+        type: 'text',
+        section: 'Detail page',
+        help: 'Small mark after the project name, e.g. ®. Leave empty for none.'
+      },
+      {
+        name: 'live_demo_url',
+        label: 'Live demo URL',
+        type: 'link',
+        section: 'Detail page',
+        help: 'The client\'s own site. Shown as a button; hidden when empty.'
+      },
+      { name: 'live_demo_label', label: 'Live demo button label', type: 'text', section: 'Detail page' },
+      { name: 'hero_image', label: 'Hero image', type: 'image', section: 'Detail page' },
+      { name: 'secondary_image', label: 'Second image', type: 'image', section: 'Detail page' },
+      {
+        name: 'full_description',
+        label: 'Introduction',
+        type: 'textarea',
+        rows: 6,
+        section: 'Detail page',
+        help: 'The opening paragraph. Appears twice on the page, as in the original design.'
+      },
+      { name: 'client_name', label: 'Client', type: 'text', section: 'Detail page' },
+      { name: 'year', label: 'Release date', type: 'text', section: 'Detail page' },
+      { name: 'role', label: 'Role', type: 'text', section: 'Detail page' },
+      {
+        name: 'solution_text',
+        label: 'The Solution',
+        type: 'textarea',
+        rows: 4,
+        section: 'Detail page'
+      },
+      {
+        name: 'features',
+        label: 'Key features',
+        type: 'lines',
+        column: 'features_json',
+        rows: 5,
+        section: 'Detail page',
+        help: 'One per line. The whole block is hidden when empty.'
+      },
+      { name: 'outcome_text', label: 'Outcome', type: 'textarea', rows: 4, section: 'Detail page' },
       {
         name: 'gallery',
         label: 'Gallery images',
         type: 'gallery',
         column: 'gallery_json',
-        help: 'One path per line, optionally "path | alt text". Stored for the detail page; not shown on the grid.'
+        section: 'Detail page',
+        help: 'One path per line, optionally "path | alt text". Shown as the slider; hidden when empty.'
       },
-      { name: 'client_name', label: 'Client', type: 'text' },
-      { name: 'year', label: 'Year', type: 'text' },
-      { name: 'link', label: 'Link', type: 'link' },
-      { name: 'open_in_new_tab', label: 'Open link in a new tab', type: 'checkbox' },
-      { name: 'badge_text', label: 'Badge', type: 'text', help: 'Corner ribbon, e.g. "FEATURED CASE". Leave empty for none.' },
-      { name: 'cta_label', label: 'Call-to-action label', type: 'text' },
-      VISIBILITY_FIELD
+      {
+        name: 'testimonial_id',
+        label: 'Testimonial',
+        type: 'reference',
+        section: 'Detail page',
+        source: () => testimonials.list().map((t) => ({ id: t.id, name: t.client_name })),
+        help: 'Quotes one of the homepage testimonials. Hidden when none is chosen.'
+      },
+      { name: 'closing_image_1', label: 'Closing image 1', type: 'image', section: 'Detail page' },
+      { name: 'closing_image_2', label: 'Closing image 2', type: 'image', section: 'Detail page' },
+      {
+        name: 'related_image',
+        label: 'Related-strip image',
+        type: 'image',
+        section: 'Detail page',
+        help: 'Used when this project appears in another project\'s "Related projects" strip. Falls back to the cover image.'
+      },
+      {
+        name: 'related',
+        label: 'Related projects',
+        type: 'lines',
+        column: 'related_slugs_json',
+        rows: 3,
+        section: 'Detail page',
+        help: 'One project slug per line. Leave empty to use the next few projects automatically.'
+      }
     ]
   },
 

@@ -89,30 +89,42 @@ cannot silently drop content.
 original file:
 
 ```
-EQUIVALENT  index.html      original 144861 bytes, rendered 144871 bytes
-EQUIVALENT  services.html   original 84726 bytes, rendered 84720 bytes
-EXACT       portfolio.html  original 74749 bytes, rendered 74749 bytes
+EQUIVALENT  index.html             original 144861 bytes, rendered 144841 bytes
+EQUIVALENT  services.html          original 84726 bytes, rendered 84720 bytes
+EQUIVALENT  portfolio.html         original 74749 bytes, rendered 74542 bytes
+EQUIVALENT  portfolio-details.html original  62002 bytes, rendered 61909 bytes
 ```
 
-`portfolio.html` is byte-for-byte identical. Across all three pages only **7 lines
-of 3,528** differ, and every one is an entity spelling: `&quot;` where the original
-wrote `"`, and `—` where it wrote `&mdash;`. The original files are internally
-inconsistent about this (`index.html` writes `&mdash;`, `portfolio.html` writes a
-literal `—`), so no single escaping rule can reproduce both. Every page declares
-`charset="utf-8"`, which makes the two spellings render identically. `verify`
-compares entity-decoded documents to prove that.
-
-One further difference is deliberate and listed in `tools/parity.js` — see
-[One deliberate content change](#one-deliberate-content-change).
+Across all four pages **6 lines out of 4,182** differ, and every one is an entity
+spelling: `—` where the original wrote `&mdash;`. The original files are
+internally inconsistent about this (`index.html` writes `&mdash;`,
+`portfolio.html` writes a literal `—`), so no single escaping rule can reproduce
+both. Every page declares `charset="utf-8"`, which makes the two spellings render
+identically. Once entities are decoded, **zero** lines differ.
 
 Class names, attribute order, indentation, comments and whitespace are unchanged.
+
+### What `verify` deliberately does not compare
+
+Three kinds of allowance, all enumerated in `tools/parity.js` and printed on
+every run, so nothing is waved through silently:
+
+- **Corrections** — defects in the hand-written markup the data model does not
+  reproduce. There are six; see below.
+- **Masked links** — the project-card hrefs that changed on purpose when detail
+  pages were added. They are blanked on *both* sides, so the comparison still
+  proves every byte around them is identical.
+- **Masked region** — the related-projects strip on the detail page, which is now
+  derived from the project list rather than hand-written.
+
+Anything not on those lists still fails the check.
 
 ### URLs
 
 The original `.html` URLs are preserved exactly, so every internal link,
 `href="portfolio.html"` and bookmark keeps working. `/`, `/index.html`,
-`/services.html` and `/portfolio.html` render from the database; `/about.html`,
-`/contact.html` and `/portfolio-details.html` are served as the original files;
+`/services.html`, `/portfolio.html` and `/portfolio-details.html?slug=...` render
+from the database; `/about.html` and `/contact.html` are served as the original files;
 everything else (css, js, fonts, images, the PDF) is served straight from
 `IAMSREE/`.
 
@@ -122,11 +134,43 @@ everything else (css, js, fonts, images, the PDF) is served straight from
 |---|---|
 | Homepage | Selected Work (case studies), Testimonials, Selected Client Projects, Brand Logos, Brand Grid Layout, Page Text |
 | Services page | Service sections, and the deliverables inside each section |
-| Portfolio page | Projects, and the filter categories |
+| Portfolio page | Projects (grid card **and** detail page), and the filter categories |
 
 Each entity supports create, edit, delete, show/hide, and reordering by drag or
 by arrow buttons. Lists have search and visibility filters; projects also filter
 by category.
+
+### Project detail pages
+
+Every project has its own page at `/portfolio-details.html?slug=<slug>`, and
+every card in the portfolio grid opens it. The client's own site is still one
+click away — it became the "live demo" button on the detail page.
+
+The slug travels as a query parameter rather than a path segment
+(`/portfolio/<slug>`) for a concrete reason: every asset and nav link in the
+original markup is relative (`css/main.css`, `href="portfolio.html"`), so a page
+served one level deep would resolve all of them against `/portfolio/` and break.
+Pretty URLs are possible later, but only after rewriting those references.
+
+The whole page is editable under **Portfolio page → Projects**, in the
+*Detail page* section of the form: browser title and meta description, subtitle,
+live demo link, hero and secondary images, introduction, the Client / Release
+date / Role / Category rows, The Solution, Key features, Outcome, the gallery
+slider, a testimonial, two closing images, and the related-projects strip.
+
+Optional parts disappear rather than render empty. A project with only a title
+and cover image produces a clean page with no stray headings, no broken
+`<img src="">` and no empty slider — verified for all fourteen.
+
+Only Krooqi was written as a full case study in the original site. The other
+thirteen were seeded from what was already known about them (title, category,
+cover image, short description), so each has a working page from day one and can
+be filled in as the content is written.
+
+Two per-project fields control the related strip: **Related projects** (one slug
+per line, empty means "the next few projects automatically") and
+**Related-strip image** (the crop used when this project appears in someone
+else's strip, falling back to the cover image).
 
 ### The brand wall
 
@@ -148,17 +192,27 @@ onto this server one at a time without breaking the others.
 admin lets you edit the values but not add or delete rows. That is enforced
 server-side, not just hidden in the UI.
 
-### One deliberate content change
+### Deliberate content changes
 
-The original markup contains a typo: of the thirty brand logo `<img>` tags, one
-has `alt="Sreelalal C K"` where the rest have `alt="Sreelal C K"`. Alt text
-describes the logo, so it is stored once per brand rather than once per grid
-slot, which means that single misspelling is not reproduced.
+Six, all listed in `tools/parity.js` and all in `alt`/image attributes rather
+than anything visible in layout. Remove an entry there to make the check enforce
+the original spelling again.
 
-It is an invisible accessibility attribute, not a design change, and it is
-listed explicitly in `tools/parity.js` so the parity check stays strict about
-everything else. Remove the entry there if you would rather keep the original
-spelling.
+1. **A typo.** Of the thirty brand logo `<img>` tags, one reads
+   `alt="Sreelalal C K"` where the rest read `alt="Sreelal C K"`. Alt text
+   describes the logo, so it is stored once per brand rather than once per grid
+   slot, and that single misspelling is not reproduced.
+
+2. **Detail page image alt text** (four images). The original labelled every
+   project screenshot `alt="Sreelal C K"` — the designer's name, not the image's
+   content. Alt is now derived from the project, so Krooqi's screenshots read
+   `alt="Krooqi"`. On a template serving fourteen projects the old value would
+   have been wrong on all of them.
+
+3. **The detail page testimonial avatar.** The quote is now linked to the
+   testimonial record it duplicates, so it uses that record's avatar
+   (`avatar-10`) rather than the page's own copy (`avatar-20`). Same person,
+   different crop; swap it in **Testimonials** if you prefer the other one.
 
 ### Fields that are stored but not displayed
 
@@ -169,15 +223,6 @@ change the design:
 - Case study **short description** — the card shows an overlay heading and
   subheading instead.
 - Testimonial **role/title** — the card shows the company only.
-- Portfolio **full description** and **gallery images** — these belong to the
-  project detail page, which is still a static file (see below).
-
-### Not in scope
-
-`portfolio-details.html` is still static. Portfolio projects already carry the
-slug, full description and gallery needed to drive it, so making it dynamic is a
-contained follow-up: add a `/portfolio-details.html` route that looks the project
-up by slug, and convert that file the same way the other three were converted.
 
 ## Schema
 
@@ -192,7 +237,7 @@ Eleven tables plus a session store. `position` is the spec's `order` field
 | `service_sections` / `service_items` | Services page accordion and its bullet lists |
 | `brands` / `brand_tiles` / `brand_tile_slides` | Homepage brand logo wall |
 | `site_settings` | Editable page copy, keyed by name |
-| `portfolio_projects` | Portfolio grid |
+| `portfolio_projects` | Portfolio grid cards and their detail pages |
 | `portfolio_categories` | Portfolio filter buttons |
 | `sessions` | Signed-in admin sessions |
 
@@ -262,7 +307,7 @@ comments. The ones that matter:
 | `npm run hash -- "pw"` | Generate a password hash. |
 | `npm run build:templates` | Regenerate `seed-data.json` and the public templates from `IAMSREE/*.html`. |
 
-`tools/smoke-test.js` runs 45 end-to-end checks against a running server —
+`tools/smoke-test.js` runs 53 end-to-end checks against a running server —
 auth, CSRF, CRUD, reordering, visibility, uploads, escaping and page parity:
 
 ```bash

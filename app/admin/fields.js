@@ -32,6 +32,19 @@ function formValue(field, row) {
     return gallery.map((g) => (g.alt ? `${g.src} | ${g.alt}` : g.src)).join('\n');
   }
 
+  if (field.type === 'lines') {
+    if (!row) return '';
+    // Prefer the parsed array the model exposes; fall back to the raw column.
+    const parsed = row[field.name];
+    if (Array.isArray(parsed)) return parsed.join('\n');
+    try {
+      const fromColumn = JSON.parse(row[field.column] || '[]');
+      return Array.isArray(fromColumn) ? fromColumn.join('\n') : '';
+    } catch {
+      return '';
+    }
+  }
+
   if (!row) return field.default === undefined ? '' : field.default;
 
   const value = row[field.name];
@@ -116,6 +129,10 @@ function parse(resource, req, existing) {
 
       case 'gallery':
         values[field.column] = JSON.stringify(v.galleryList(raw));
+        break;
+
+      case 'lines':
+        values[field.column] = JSON.stringify(v.lines(raw, { max: field.max || 30 }));
         break;
 
       default:

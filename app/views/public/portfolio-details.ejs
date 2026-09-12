@@ -324,9 +324,11 @@
                             <div class="col-lg-8">
                                 <p class="fz-font-2xl fw-400 neutral-900 mt-60 mb-60"><%- esc(project.full_description) %></p>
                             </div>
+<% if (project.secondary_image) { -%>
                             <div class="col-lg-5 pr-100 pb-lg-0 pb-40">
                                 <img src="<%- esc(project.secondary_image) %>" alt="<%- esc(project.cover_alt || project.title) %>">
                             </div>
+<% } -%>
                             <div class="col-lg-7">
                                 <div class="pb-120">
                                     <div class="sec-2-home-5__card sec-2-home-5__card--list d-flex align-items-center">
@@ -354,6 +356,7 @@
                                     </div>
                                     <p class="fz-font-2xl fw-400 neutral-900 mt-40 mb-0"><%- esc(project.full_description) %></p>
                                 </div>
+<% if (project.solution_text || project.features.length) { -%>
                                 <div class="pb-120">
                                     <div class="sec-2-home-5__card sec-2-home-5__card--list d-flex align-items-center">
                                         <ul class="sec-2-home-5__list list-unstyled mb-0">
@@ -372,6 +375,8 @@
                                     </ul>
 <% } -%>
                                 </div>
+<% } -%>
+<% if (project.outcome_text) { -%>
                                 <div>
                                     <div class=" sec-2-home-5__card sec-2-home-5__card--list d-flex align-items-center">
                                         <ul class="sec-2-home-5__list list-unstyled mb-0">
@@ -382,9 +387,11 @@
                                     </div>
                                     <p class="fz-font-xl fw-500 neutral-900 mb-0"><%- esc(project.outcome_text) %></p>
                                 </div>
+<% } -%>
                             </div>
                         </div>
                     </div>
+<% if (project.gallery.length) { -%>
                     <div class="swiper about-me-slider-active pt-100 pb-100 at-item-anime-area">
                         <div class="swiper-wrapper">
 <% project.gallery.forEach(function (image) { -%>
@@ -396,6 +403,7 @@
 <% }); -%>
                         </div>
                     </div>
+<% } -%>
                     <div class="container">
                         <div class="row">
 <% if (project.testimonial) { -%>

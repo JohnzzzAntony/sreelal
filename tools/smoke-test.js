@@ -18,7 +18,7 @@ const BASE = process.argv[2] || 'http://localhost:3000';
 const USERNAME = process.env.ADMIN_USERNAME || 'admin';
 const PASSWORD = process.env.SMOKE_PASSWORD || 'local-dev-password-123';
 
-const { normalise, baselineFor } = require('./parity');
+const { comparable, baselineFor } = require('./parity');
 
 let cookie = '';
 let passed = 0;
@@ -106,15 +106,21 @@ const POST_FORM = { 'content-type': 'application/x-www-form-urlencoded' };
 
 async function main() {
   console.log('\n== public pages');
-  for (const page of ['index.html', 'services.html', 'portfolio.html']) {
-    const url = page === 'index.html' ? '/' : '/' + page;
+  for (const page of ['index.html', 'services.html', 'portfolio.html', 'portfolio-details.html']) {
+    const url =
+      page === 'index.html'
+        ? '/'
+        : page === 'portfolio-details.html'
+          ? // The original detail page is Krooqi's.
+            '/portfolio-details.html?slug=krooqi'
+          : '/' + page;
     const res = await request(url);
     assert.strictEqual(res.status, 200, `${url} returned ${res.status}`);
 
     const live = await res.text();
     const original = fs.readFileSync(path.join(__dirname, '..', 'IAMSREE', page), 'utf8');
     assert.strictEqual(
-      normalise(live),
+      comparable(page, live),
       baselineFor(page, original),
       `${url} does not match ${page}`
     );
@@ -125,6 +131,71 @@ async function main() {
     const res = await request(asset);
     assert.strictEqual(res.status, 200, `${asset} returned ${res.status}`);
     ok(`${asset} served`);
+  }
+
+  console.log('\n== project detail pages');
+  {
+    const grid = await (await request('/portfolio.html')).text();
+    const slugs = [
+      ...new Set(
+        [...grid.matchAll(/href="portfolio-details\.html\?slug=([a-z0-9-]+)"/g)].map((m) => m[1])
+      )
+    ];
+    assert.strictEqual(slugs.length, 14, `expected 14 linked projects, found ${slugs.length}`);
+    assert(
+      !/href="https?:\/\/[^"]*"(?= class="alt-portfolio-thumb)/.test(grid),
+      'a project card still links straight to an external site'
+    );
+    ok(`all ${slugs.length} grid cards link to their own detail page`);
+
+    for (const slug of slugs) {
+      const res = await request(`/portfolio-details.html?slug=${slug}`);
+      assert.strictEqual(res.status, 200, `${slug} returned ${res.status}`);
+      const html = await res.text();
+      assert(!html.includes('src=""'), `${slug} renders an empty image source`);
+      assert(!html.includes('href=""'), `${slug} renders an empty link`);
+      const related = (html.match(/alt-portfolio-thumb p-relative/g) || []).length;
+      assert.strictEqual(related, 3, `${slug} shows ${related} related projects`);
+    }
+    ok('every project page renders with no empty images, links or related slots');
+
+    // Krooqi is the one project with full content in the original markup.
+    const krooqi = await (await request('/portfolio-details.html?slug=krooqi')).text();
+    assert(krooqi.includes('<title>Krooqi'), 'per-project title missing');
+    assert(krooqi.includes('>The Solution<'), 'solution block missing');
+    assert(krooqi.includes('>Outcome<'), 'outcome block missing');
+    assert.strictEqual(
+      (krooqi.match(/about-me-slider-thumb/g) || []).length,
+      5,
+      'gallery slide count changed'
+    );
+    assert.strictEqual(
+      (krooqi.match(/<li class="neutral-950">/g) || []).length,
+      4,
+      'key feature count changed'
+    );
+    assert(krooqi.includes('Alphan Abdul Rub'), 'testimonial missing');
+    ok('krooqi keeps its full case study');
+
+    // A project with only the basics must not show empty sections.
+    const sparse = await (await request('/portfolio-details.html?slug=mamame')).text();
+    assert(!sparse.includes('>The Solution<'), 'empty solution block rendered');
+    assert(!sparse.includes('>Outcome<'), 'empty outcome block rendered');
+    assert(!sparse.includes('about-me-slider-active'), 'empty gallery slider rendered');
+    assert(!sparse.includes('testimonial-content'), 'empty testimonial rendered');
+    assert(!sparse.includes('border-bottom-900'), 'live demo button rendered without a URL');
+    ok('a project without extra content hides those sections');
+
+    const missing = await request('/portfolio-details.html?slug=does-not-exist');
+    assert.strictEqual(missing.status, 404, `unknown slug returned ${missing.status}`);
+    const missingBody = await missing.text();
+    assert(!missingBody.includes('Ewaantech'), 'unknown slug served the stale static page');
+    ok('an unknown slug answers 404 instead of the stale static file');
+
+    const bare = await request('/portfolio-details.html');
+    assert.strictEqual(bare.status, 302);
+    assert.match(bare.headers.get('location'), /portfolio\.html$/);
+    ok('the bare detail URL redirects to the listing');
   }
 
   console.log('\n== authentication');
@@ -559,12 +630,17 @@ async function main() {
   await cleanup();
 
   console.log('\n== parity after all changes');
-  for (const page of ['index.html', 'services.html', 'portfolio.html']) {
-    const url = page === 'index.html' ? '/' : '/' + page;
+  for (const page of ['index.html', 'services.html', 'portfolio.html', 'portfolio-details.html']) {
+    const url =
+      page === 'index.html'
+        ? '/'
+        : page === 'portfolio-details.html'
+          ? '/portfolio-details.html?slug=krooqi'
+          : '/' + page;
     const live = await (await request(url)).text();
     const original = fs.readFileSync(path.join(__dirname, '..', 'IAMSREE', page), 'utf8');
     assert.strictEqual(
-      normalise(live),
+      comparable(page, live),
       baselineFor(page, original),
       `${url} drifted from ${page}`
     );

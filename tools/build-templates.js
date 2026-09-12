@@ -235,7 +235,9 @@ function buildIndex() {
       const qStart = card.indexOf(quoteOpen);
       if (qStart === -1) throw new Error('build-templates: testimonial quote not found');
       const qEnd = card.indexOf('</blockquote>', qStart);
-      card = card.slice(0, qStart + quoteOpen.length) + '<%- esc(item.quote) %>' + card.slice(qEnd);
+      // The quotation marks are part of this card's presentation, not the stored
+      // text - the project detail page wraps the same quote in curly quotes.
+      card = card.slice(0, qStart + quoteOpen.length) + '"<%- esc(item.quote) %>"' + card.slice(qEnd);
 
       // Five star glyphs, the first `rating` of them carrying the filled `star`
       // class. The first glyph is reused verbatim - including its own
@@ -725,6 +727,34 @@ function buildPortfolio() {
 function buildProjectDetail() {
   let html = read('portfolio-details.html');
 
+  /**
+   * Wraps the block containing `marker` in a condition, so a project that has
+   * not filled that part in gets no empty heading, no broken `<img src="">` and
+   * no empty slider.
+   */
+  const wrapBlock = (source, marker, openLine, closeLine, condition, label) => {
+    const at = source.indexOf(marker);
+    if (at === -1) throw new Error(`build-templates: "${label}" marker not found`);
+
+    // Matched with the leading newline so an indented anchor cannot match inside
+    // a more deeply indented line - 32 spaces + "</div>" is a substring of 36.
+    const openAt = source.lastIndexOf('\n' + openLine, at);
+    if (openAt === -1) throw new Error(`build-templates: "${label}" opening not found`);
+    const start = openAt + 1;
+
+    const closeAt = source.indexOf('\n' + closeLine, at);
+    if (closeAt === -1) throw new Error(`build-templates: "${label}" closing not found`);
+    const end = closeAt + 1 + closeLine.length;
+
+    return (
+      source.slice(0, start) +
+      `<% if (${condition}) { -%>\n` +
+      source.slice(start, end) +
+      '<% } -%>\n' +
+      source.slice(end)
+    );
+  };
+
   html = replaceOnce(
     html,
     '<title>Krooqi — Real Estate UX Case Study | Sreelal C K</title>',
@@ -949,6 +979,43 @@ function buildProjectDetail() {
       'detail closing image 2'
     );
   }
+
+  // -- Hide sections a project has not filled in ----------------------------
+  html = wrapBlock(
+    html,
+    '<img src="<%- esc(project.secondary_image) %>"',
+    '                            <div class="col-lg-5 pr-100 pb-lg-0 pb-40">\n',
+    '                            </div>\n',
+    'project.secondary_image',
+    'secondary image block'
+  );
+
+  html = wrapBlock(
+    html,
+    '<h3 class="h6 mb-0 fw-600">The Solution</h3>',
+    '                                <div class="pb-120">\n',
+    '                                </div>\n',
+    'project.solution_text || project.features.length',
+    'solution block'
+  );
+
+  html = wrapBlock(
+    html,
+    '<h3 class="h6 mb-0 fw-600">Outcome</h3>',
+    '                                <div>\n',
+    '                                </div>\n',
+    'project.outcome_text',
+    'outcome block'
+  );
+
+  html = wrapBlock(
+    html,
+    '<div class="swiper about-me-slider-active pt-100 pb-100 at-item-anime-area">',
+    '                    <div class="swiper about-me-slider-active pt-100 pb-100 at-item-anime-area">\n',
+    '                    </div>\n',
+    'project.gallery.length',
+    'gallery block'
+  );
 
   // -- Related projects -----------------------------------------------------
   {

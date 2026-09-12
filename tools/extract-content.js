@@ -97,7 +97,10 @@ function extractTestimonials(html) {
       client_name: text(name[1]),
       role_title: '',
       company: text(company[1]),
-      quote: text(quote[1]),
+      // Stored without surrounding quotation marks: the homepage wraps the quote
+      // in straight quotes and the project detail page in curly ones, so the
+      // marks belong to each template rather than to the content.
+      quote: text(quote[1]).replace(/^["“”']+|["“”']+$/g, ''),
       avatar: avatar[1] || '',
       avatar_alt: text(avatar[2]),
       rating: (block.match(/<span class="star">/g) || []).length,
@@ -472,7 +475,9 @@ function applyProjectDetails(portfolio, detail) {
       ...project,
       // The card used to link straight out to the client's site; that URL is now
       // the detail page's "live demo" link and the card points at the page.
-      live_demo_url: project.link,
+      // Only a real external address counts: several cards were placeholders
+      // ("#") or already pointed at the shared detail page.
+      live_demo_url: /^https?:\/\//i.test(project.link) ? project.link : '',
       live_demo_label: 'live demo',
       open_in_new_tab: 0,
       related_image: relatedImageBySlug.get(project.slug) || '',
