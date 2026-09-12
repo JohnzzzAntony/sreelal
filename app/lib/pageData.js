@@ -43,9 +43,30 @@ function servicesPage() {
 function portfolioPage() {
   return {
     ...helpers,
+    detailUrl: portfolio.projects.detailUrl,
     portfolioCategories: portfolio.categories.published(),
     portfolioProjects: portfolio.projects.published()
   };
 }
 
-module.exports = { homepage, servicesPage, portfolioPage, helpers };
+/**
+ * One project's page. Returns null when the slug is unknown or the project is
+ * hidden, so the route can answer 404 rather than render an empty shell.
+ */
+function projectPage(slug) {
+  const project = portfolio.projects.findBySlug(slug);
+  if (!project || !project.is_visible) return null;
+
+  return {
+    ...helpers,
+    detailUrl: portfolio.projects.detailUrl,
+    project: {
+      ...project,
+      // A project may point at any homepage testimonial, or none.
+      testimonial: project.testimonial_id ? testimonials.find(project.testimonial_id) : null
+    },
+    relatedProjects: portfolio.projects.relatedFor(project)
+  };
+}
+
+module.exports = { homepage, servicesPage, portfolioPage, projectPage, helpers };

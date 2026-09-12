@@ -374,10 +374,160 @@ function extractPortfolio(html) {
 }
 
 // --------------------------------------------------------------------------
+// Project detail page
+//
+// The original ships one hand-written detail page (Krooqi). Its content becomes
+// that project's detail fields; every other project gets the same page driven by
+// what is already known about it, so all fourteen have a working page on day one.
+// --------------------------------------------------------------------------
+function extractProjectDetail(html) {
+  const pick = (re, group = 1) => {
+    const m = re.exec(html);
+    return m ? text(m[group]) : '';
+  };
+
+  const gallery = matchAll(
+    html,
+    /<div class="about-me-slider-thumb at-item-anime marque">\s*<img class="w-100 rounded-4" src="([^"]+)" alt="([^"]*)">/
+  ).map((m) => ({ src: m[1], alt: text(m[2]) }));
+
+  const features = matchAll(html, /<li class="neutral-950">([\s\S]*?)<\/li>/).map((m) => text(m[1]));
+
+  const related = matchAll(
+    html,
+    /<h3 class="h5 alt-portfolio-title mb-0"><a href="([^"]+)"[^>]*class="common-underline">([\s\S]*?)<\/a>/
+  ).map((m) => text(m[2]));
+
+  const relatedImages = matchAll(
+    html,
+    /<img class="w-100 scale-img-from-to" data-value-1="1.5" data-value-2="1" src="([^"]+)" alt="([^"]*)">/
+  ).map((m) => m[1]);
+
+  const metaPairs = matchAll(
+    html,
+    /<p class="fz-font-md neutral-900 mb-0">([\s\S]*?)<\/p>\s*<p class="fz-font-lg fw-600 mb-0 neutral-900">([\s\S]*?)<\/p>/
+  ).map((m) => ({ label: text(m[1]), value: text(m[2]) }));
+
+  const metaValue = (label) => {
+    const found = metaPairs.find((p) => p.label.toLowerCase() === label);
+    return found ? found.value : '';
+  };
+
+  return {
+    // Which project this page belongs to.
+    slug: 'krooqi',
+    page_title: pick(/<title>([\s\S]*?)<\/title>/),
+    meta_description: pick(/<meta name="description" content="([^"]*)"/),
+    hero_superscript: pick(/<sup class="fz-80 fw-400 top-0">([\s\S]*?)<\/sup>/),
+    hero_subtitle: pick(/<h2 class="h5 fw-600 mb-0">([\s\S]*?)<\/h2>/),
+    hero_image: (/<div class="col-12 pt-30">\s*<img src="([^"]+)"/.exec(html) || [])[1] || '',
+    secondary_image:
+      (/<div class="col-lg-5 pr-100 pb-lg-0 pb-40">\s*<img src="([^"]+)"/.exec(html) || [])[1] || '',
+    live_demo_url: (/<a href="([^"]+)"[^>]*class="border-bottom-900 d-inline-block">/.exec(html) || [])[1] || '',
+    live_demo_label: pick(/<span class="text-1">(live demo)<\/span>/),
+    full_description: pick(/<p class="fz-font-2xl fw-400 neutral-900 mt-60 mb-60">([\s\S]*?)<\/p>/),
+    client_name: metaValue('client'),
+    year: metaValue('release date'),
+    role: metaValue('role'),
+    detail_category: metaValue('category'),
+    solution_text: pick(/<p class="fz-font-xl neutral-900">([\s\S]*?)<\/p>/),
+    features_json: JSON.stringify(features),
+    outcome_text: pick(/<p class="fz-font-xl fw-500 neutral-900 mb-0">([\s\S]*?)<\/p>/),
+    gallery_json: JSON.stringify(gallery),
+    closing_image_1:
+      (/<div class="col-12 pb-50">\s*<img src="([^"]+)"/.exec(html) || [])[1] || '',
+    closing_image_2:
+      (/<div class="col-12">\s*<img src="([^"]+)" alt="[^"]*" class="w-100">\s*<\/div>\s*<\/div>/.exec(html) || [])[1] || '',
+    testimonial_name: pick(/<h3 class="h6 testimonial-content-author-name fw-600 mb-0 fz-font-md">([\s\S]*?)<\/h3>/),
+    related_titles: related,
+    related_images: relatedImages
+  };
+}
+
+// --------------------------------------------------------------------------
 
 const indexHtml = read('index.html');
 const servicesHtml = read('services.html');
 const portfolioHtml = read('portfolio.html');
+const detailHtml = read('portfolio-details.html');
+
+/**
+ * Merges the hand-written detail page into the project it describes, and gives
+ * every other project the same page shape from what is already known about it.
+ */
+function applyProjectDetails(portfolio, detail) {
+  const relatedImageBySlug = new Map();
+  detail.related_titles.forEach((title, i) => {
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    if (detail.related_images[i]) relatedImageBySlug.set(slug, detail.related_images[i]);
+  });
+
+  return portfolio.projects.map((project) => {
+    const isSource = project.slug === detail.slug;
+
+    const base = {
+      ...project,
+      // The card used to link straight out to the client's site; that URL is now
+      // the detail page's "live demo" link and the card points at the page.
+      live_demo_url: project.link,
+      live_demo_label: 'live demo',
+      open_in_new_tab: 0,
+      related_image: relatedImageBySlug.get(project.slug) || '',
+      related_slugs_json: '[]'
+    };
+
+    if (isSource) {
+      return {
+        ...base,
+        page_title: detail.page_title,
+        meta_description: detail.meta_description,
+        hero_superscript: detail.hero_superscript,
+        hero_subtitle: detail.hero_subtitle,
+        hero_image: detail.hero_image,
+        secondary_image: detail.secondary_image,
+        live_demo_url: detail.live_demo_url,
+        live_demo_label: detail.live_demo_label,
+        full_description: detail.full_description,
+        client_name: detail.client_name,
+        year: detail.year,
+        role: detail.role,
+        solution_text: detail.solution_text,
+        features_json: detail.features_json,
+        outcome_text: detail.outcome_text,
+        gallery_json: detail.gallery_json,
+        closing_image_1: detail.closing_image_1,
+        closing_image_2: detail.closing_image_2,
+        testimonial_name: detail.testimonial_name,
+        related_slugs_json: JSON.stringify(
+          detail.related_titles.map((t) =>
+            t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+          )
+        )
+      };
+    }
+
+    return {
+      ...base,
+      page_title: `${project.title} — ${project.category_label} Case Study | Sreelal C K`,
+      meta_description: detail.meta_description,
+      hero_superscript: '',
+      hero_subtitle: project.category_label,
+      hero_image: project.cover_image,
+      secondary_image: '',
+      full_description: project.short_description,
+      role: 'UI/UX Designer',
+      solution_text: '',
+      features_json: '[]',
+      outcome_text: '',
+      gallery_json: '[]',
+      closing_image_1: '',
+      closing_image_2: ''
+    };
+  });
+}
 
 const data = {
   generatedFrom: path.basename(SOURCE),
@@ -389,6 +539,22 @@ const data = {
   services: extractServices(servicesHtml),
   portfolio: extractPortfolio(portfolioHtml)
 };
+
+data.portfolio.projects = applyProjectDetails(data.portfolio, extractProjectDetail(detailHtml));
+
+/**
+ * Content is stored decoded, so any named entity still present is one
+ * `decodeEntities` does not know. Left alone it would be escaped again at render
+ * time and show up as literal "&middot;" text on the page, so fail here instead.
+ */
+const undecoded = [...new Set([...JSON.stringify(data).matchAll(/&([a-zA-Z][a-zA-Z0-9]*);/g)].map((m) => m[1]))];
+if (undecoded.length) {
+  console.error(
+    'Unknown HTML entities survived extraction: ' + undecoded.join(', ') +
+      '\nAdd them to DECODE_ENTITIES in app/lib/html.js, then re-run.'
+  );
+  process.exit(1);
+}
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(data, null, 2) + '\n');

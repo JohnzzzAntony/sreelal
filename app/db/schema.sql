@@ -247,6 +247,36 @@ CREATE TABLE IF NOT EXISTS portfolio_projects (
   badge_text       TEXT    NOT NULL DEFAULT '',
   -- Card call-to-action wording ("View case" vs "Project").
   cta_label        TEXT    NOT NULL DEFAULT 'View case',
+
+  -- ---- Detail page ------------------------------------------------------
+  -- Every project has its own page at /portfolio-details.html?slug=<slug>.
+  -- Empty optional fields cause their section to be skipped rather than
+  -- rendered blank, so a project with only the basics still produces a clean
+  -- page.
+  page_title       TEXT    NOT NULL DEFAULT '',
+  meta_description TEXT    NOT NULL DEFAULT '',
+  hero_superscript TEXT    NOT NULL DEFAULT '',
+  hero_subtitle    TEXT    NOT NULL DEFAULT '',
+  hero_image       TEXT    NOT NULL DEFAULT '',
+  secondary_image  TEXT    NOT NULL DEFAULT '',
+  -- The project's own site. Was the grid card's link before detail pages
+  -- existed; the card now points at the detail page instead.
+  live_demo_url    TEXT    NOT NULL DEFAULT '',
+  live_demo_label  TEXT    NOT NULL DEFAULT 'live demo',
+  role             TEXT    NOT NULL DEFAULT '',
+  solution_text    TEXT    NOT NULL DEFAULT '',
+  features_json    TEXT    NOT NULL DEFAULT '[]',
+  outcome_text     TEXT    NOT NULL DEFAULT '',
+  closing_image_1  TEXT    NOT NULL DEFAULT '',
+  closing_image_2  TEXT    NOT NULL DEFAULT '',
+  -- Reuses a homepage testimonial rather than duplicating the quote.
+  testimonial_id   INTEGER REFERENCES testimonials (id) ON DELETE SET NULL,
+  -- Image used when this project appears in another project's related strip.
+  -- Falls back to cover_image when empty.
+  related_image    TEXT    NOT NULL DEFAULT '',
+  -- Slugs of the projects shown in this page's "Related projects" strip.
+  -- Empty means "the next few projects in order".
+  related_slugs_json TEXT  NOT NULL DEFAULT '[]',
   position         INTEGER NOT NULL DEFAULT 0,
   is_visible       INTEGER NOT NULL DEFAULT 1,
   created_at       TEXT    NOT NULL DEFAULT (datetime('now')),

@@ -32,9 +32,27 @@ router.get('/portfolio.html', (req, res) => {
   res.render('public/portfolio', pageData.portfolioPage());
 });
 
+/**
+ * A project's own page.
+ *
+ * The slug travels as a query parameter so the URL stays at the site root: every
+ * asset and nav link in the markup is relative ("css/main.css", "portfolio.html"),
+ * and a path like /portfolio/<slug> would resolve all of them one level deep.
+ */
+router.get('/portfolio-details.html', (req, res, next) => {
+  const slug = String(req.query.slug || '').trim();
+
+  // No slug: send visitors to the listing rather than guessing a project.
+  if (!slug) return res.redirect('/portfolio.html');
+
+  const locals = pageData.projectPage(slug);
+  if (!locals) return next();
+
+  return res.render('public/portfolio-details', locals);
+});
+
 // Unmanaged pages, served verbatim.
 router.get('/about.html', staticPage('about.html'));
 router.get('/contact.html', staticPage('contact.html'));
-router.get('/portfolio-details.html', staticPage('portfolio-details.html'));
 
 module.exports = router;

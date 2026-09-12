@@ -2,8 +2,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.">
-    <title>Case Studies &amp; Projects — Sreelal C K, UI/UX Designer</title>
+    <meta name="description" content="<%- esc(project.meta_description) %>">
+    <title><%- esc(project.page_title) %></title>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.svg">
 
@@ -288,93 +288,154 @@
     <div id="smooth-wrapper">
         <div id="smooth-content" class="z-index-3">
             <main class="bg-neutral-0">
-                <!-- portfolio-2 section 1 -->
-                <div class="sec-1-portfolio-2 overflow-hidden pt-150 pb-110 border-bottom-100 ">
-                    <div class="container pb-60">
+                <!-- portfolio-details-2 section 1 -->
+                <div class="sec-1-portfolio-details-2 overflow-hidden pt-150 pb-130">
+                    <div class="container">
                         <div class="row align-items-end">
-                            <div class="col-xxl-8 mx-auto text-center">
-                                <h1 class="fz-ds-1 fw-500">Selected Work</h1>
-                                <p class="fz-font-lg neutral-900">Selected UI/UX, web, mobile and branding work for clients across the UAE and India.</p>
+                            <div class="col-md-9">
+                                <h1 class="fz-ds-1 lh-1 fw-500 d-flex mb-0"><%- esc(project.title) %><% if (project.hero_superscript) { %><sup class="fz-80 fw-400 top-0"><%- esc(project.hero_superscript) %></sup><% } %></h1>
+                                <h2 class="h5 fw-600 mb-0"><%- esc(project.hero_subtitle) %></h2>
                             </div>
+                            <div class="col-md-3 ms-auto text-md-end">
+<% if (project.live_demo_url) { -%>
+                                <a href="<%- esc(safeUrl(project.live_demo_url)) %>" target="_blank" rel="noopener" class="border-bottom-900 d-inline-block">
+                                    <span class="at-btn common-black text-uppercase bg-transparent mb-10 rounded-0 p-0">
+                                        <span class="text-uppercase">
+                                            <span class="text-1"><%- esc(project.live_demo_label) %></span>
+                                            <span class="text-2"><%- esc(project.live_demo_label) %></span>
+                                        </span>
+                                        <i>
+                                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.21967 9.40717C-0.0732232 9.70006 -0.0732232 10.1749 0.21967 10.4678C0.512563 10.7607 0.987437 10.7607 1.28033 10.4678L0.21967 9.40717ZM10.6875 0.75C10.6875 0.335786 10.3517 2.97145e-09 9.9375 1.50485e-07L3.1875 -2.70983e-07C2.77329 -2.70983e-07 2.4375 0.335786 2.4375 0.75C2.4375 1.16421 2.77329 1.5 3.1875 1.5H9.1875V7.5C9.1875 7.91421 9.52329 8.25 9.9375 8.25C10.3517 8.25 10.6875 7.91421 10.6875 7.5L10.6875 0.75ZM0.75 9.9375L1.28033 10.4678L10.4678 1.28033L9.9375 0.75L9.40717 0.21967L0.21967 9.40717L0.75 9.9375Z" fill="currentColor"></path>
+                                            </svg>
+                                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.21967 9.40717C-0.0732232 9.70006 -0.0732232 10.1749 0.21967 10.4678C0.512563 10.7607 0.987437 10.7607 1.28033 10.4678L0.21967 9.40717ZM10.6875 0.75C10.6875 0.335786 10.3517 2.97145e-09 9.9375 1.50485e-07L3.1875 -2.70983e-07C2.77329 -2.70983e-07 2.4375 0.335786 2.4375 0.75C2.4375 1.16421 2.77329 1.5 3.1875 1.5H9.1875V7.5C9.1875 7.91421 9.52329 8.25 9.9375 8.25C10.3517 8.25 10.6875 7.91421 10.6875 7.5L10.6875 0.75ZM0.75 9.9375L1.28033 10.4678L10.4678 1.28033L9.9375 0.75L9.40717 0.21967L0.21967 9.40717L0.75 9.9375Z" fill="currentColor"></path>
+                                            </svg>
+                                        </i>
+                                    </span>
+                                </a>
+<% } -%>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 pt-30">
+                                <img src="<%- esc(project.hero_image) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100">
+                            </div>
+                            <div class="col-lg-8">
+                                <p class="fz-font-2xl fw-400 neutral-900 mt-60 mb-60"><%- esc(project.full_description) %></p>
+                            </div>
+                            <div class="col-lg-5 pr-100 pb-lg-0 pb-40">
+                                <img src="<%- esc(project.secondary_image) %>" alt="<%- esc(project.cover_alt || project.title) %>">
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="pb-120">
+                                    <div class="sec-2-home-5__card sec-2-home-5__card--list d-flex align-items-center">
+                                        <ul class="sec-2-home-5__list list-unstyled mb-0">
+                                            <li class="sec-2-home-5__list-item">
+                                                <h3 class="h6 mb-0 fw-600">Introduction</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom-100 py-4">
+                                        <p class="fz-font-md neutral-900 mb-0">Client</p>
+                                        <p class="fz-font-lg fw-600 mb-0 neutral-900"><%- esc(project.client_name) %></p>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom-100 py-4">
+                                        <p class="fz-font-md neutral-900 mb-0">Release Date</p>
+                                        <p class="fz-font-lg fw-600 mb-0 neutral-900"><%- esc(project.year) %></p>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom-100 py-4">
+                                        <p class="fz-font-md neutral-900 mb-0">Role</p>
+                                        <p class="fz-font-lg fw-600 mb-0 neutral-900"><%- esc(project.role) %></p>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-bottom-100 py-4">
+                                        <p class="fz-font-md neutral-900 mb-0">Category</p>
+                                        <p class="fz-font-lg fw-600 mb-0 neutral-900"><%- esc(project.category_label) %></p>
+                                    </div>
+                                    <p class="fz-font-2xl fw-400 neutral-900 mt-40 mb-0"><%- esc(project.full_description) %></p>
+                                </div>
+                                <div class="pb-120">
+                                    <div class="sec-2-home-5__card sec-2-home-5__card--list d-flex align-items-center">
+                                        <ul class="sec-2-home-5__list list-unstyled mb-0">
+                                            <li class="sec-2-home-5__list-item">
+                                                <h3 class="h6 mb-0 fw-600">The Solution</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p class="fz-font-xl neutral-900"><%- esc(project.solution_text) %></p>
+<% if (project.features.length) { -%>
+                                    <h3 class="h6 py-3">Key Features</h3>
+                                    <ul class="ps-4">
+<% project.features.forEach(function (feature) { -%>
+                                        <li class="neutral-950"><%- esc(feature) %></li>
+<% }); -%>
+                                    </ul>
+<% } -%>
+                                </div>
+                                <div>
+                                    <div class=" sec-2-home-5__card sec-2-home-5__card--list d-flex align-items-center">
+                                        <ul class="sec-2-home-5__list list-unstyled mb-0">
+                                            <li class="sec-2-home-5__list-item">
+                                                <h3 class="h6 mb-0 fw-600">Outcome</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p class="fz-font-xl fw-500 neutral-900 mb-0"><%- esc(project.outcome_text) %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper about-me-slider-active pt-100 pb-100 at-item-anime-area">
+                        <div class="swiper-wrapper">
+<% project.gallery.forEach(function (image) { -%>
+                            <div class="swiper-slide">
+                                <div class="about-me-slider-thumb at-item-anime marque">
+                                    <img class="w-100 rounded-4" src="<%- esc(image.src) %>" alt="<%- esc(image.alt || project.title) %>">
+                                </div>
+                            </div>
+<% }); -%>
                         </div>
                     </div>
                     <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-2"></div>
-                            <div class="col-lg-8 mx-auto">
-                                <div class="filter-portfolio d-flex flex-wrap align-items-center justify-content-center gap-2">
-                                    <a href="#" class="at-btn filter-btn btn-sm active" data-filter="all">All Work</a>
-<% portfolioCategories.forEach(function (category) { -%>
-                                    <a href="#" class="at-btn filter-btn btn-sm" data-filter="<%- esc(category.slug) %>"><%- esc(category.name) %></a>
-<% }); -%>
+                        <div class="row">
+<% if (project.testimonial) { -%>
+                            <div class="col-lg-7 ms-auto">
+                                <div class="testimonial-author d-flex align-items-start mb-0 gap-4 pb-100 w-75">
+                                    <div>
+                                        <div class="testimonial-left-img size-50 rounded-3 overflow-hidden">
+                                            <img src="<%- esc(project.testimonial.avatar) %>" alt="<%- esc(project.testimonial.avatar_alt) %>">
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-content">
+                                        <p class="fz-3xl neutral-900 fw-400">&ldquo;<%- esc(project.testimonial.quote) %>&rdquo;</p>
+                                        <h3 class="h6 testimonial-content-author-name fw-600 mb-0 fz-font-md"><%- esc(project.testimonial.client_name) %></h3>
+                                        <p class="testimonial-content-author-position m-0 fz-font-label"><%- esc(project.testimonial.company) %></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 ms-auto text-end mt-lg-0 mt-3">
-                                <div class="d-flex justify-content-end">
-                                    <select class="at-select">
-                                        <option value="1">Latest</option>
-                                        <option value="2">Oldest</option>
-                                        <option value="3">Featured</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 pb-30"></div>
-                            <!-- beautify ignore:start -->
-            <% portfolioProjects.forEach(function (item) { -%>
-<div class="alt-portfolio-item card-portfolio mb-50 at-hover-item col-lg-6" data-category="<%- esc(item.category_slug || '') %>">
-    <a href="<%- esc(detailUrl(item)) %>" class="alt-portfolio-thumb mb-15 p-relative fix d-block">
-        <img class="w-100" src="<%- esc(item.cover_image) %>" alt="<%- esc(item.cover_alt) %>">
-        <div class="alt-portfolio-btn">
-            <div class="content changeless">
-                <span class="bg-transparent text-uppercase border px-3 py-1 rounded-pill common-white fz-font-label"><%- esc(item.category_label) %></span>
-                <h1 class="h4 fw-400 text-white mb-0 mt-15"><%- esc(item.title) %></h1>
-                <p class="text-white fz-font-md mb-0 mt-10 text-truncate-3 des pr-250"><%- esc(item.short_description) %></p>
-            </div>
-        </div>
-<% if (item.badge_text) { -%>
-        <span class="alt-portfolio-tag bg-theme-primary px-3 py-2 rounded-pill p-absolute top-0 end-0 m-4 fz-10 fw-600 text-white"><%- esc(item.badge_text) %></span>
 <% } -%>
-    </a>
-    <div class="alt-portfolio-content d-flex justify-content-between">
-        <h2 class="h5 alt-portfolio-title mb-0 fw-600"><a href="<%- esc(detailUrl(item)) %>" class="common-underline"><%- esc(item.title) %></a></h2>
-        <a href="<%- esc(detailUrl(item)) %>" class="alt-portfolio-plus neutral-950 d-flex align-items-center gap-2">
-            <span class="fz-font-label neutral-900 text-uppercase fw-600"><%- esc(item.cta_label) %></span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
-                <path d="M4.512 10.8V0H6.984V10.8H4.512ZM0 6.6V4.2H11.52V6.6H0Z" fill="currentColor"></path>
-            </svg>
-        </a>
-    </div>
-</div>
-<% }); -%>
-            <!-- beautify ignore:end -->
-                            <div class="col-12 text-center">
-                                <a class="at-btn" href="contact.html">
-                                    <span>
-                                        <span class="text-1">GET IN TOUCH</span>
-                                        <span class="text-2">GET IN TOUCH</span>
-                                    </span>
-                                    <i>
-                                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0.21967 9.40717C-0.0732232 9.70006 -0.0732232 10.1749 0.21967 10.4678C0.512563 10.7607 0.987437 10.7607 1.28033 10.4678L0.21967 9.40717ZM10.6875 0.75C10.6875 0.335786 10.3517 2.97145e-09 9.9375 1.50485e-07L3.1875 -2.70983e-07C2.77329 -2.70983e-07 2.4375 0.335786 2.4375 0.75C2.4375 1.16421 2.77329 1.5 3.1875 1.5H9.1875V7.5C9.1875 7.91421 9.52329 8.25 9.9375 8.25C10.3517 8.25 10.6875 7.91421 10.6875 7.5L10.6875 0.75ZM0.75 9.9375L1.28033 10.4678L10.4678 1.28033L9.9375 0.75L9.40717 0.21967L0.21967 9.40717L0.75 9.9375Z" fill="currentColor"></path>
-                                        </svg>
-                                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0.21967 9.40717C-0.0732232 9.70006 -0.0732232 10.1749 0.21967 10.4678C0.512563 10.7607 0.987437 10.7607 1.28033 10.4678L0.21967 9.40717ZM10.6875 0.75C10.6875 0.335786 10.3517 2.97145e-09 9.9375 1.50485e-07L3.1875 -2.70983e-07C2.77329 -2.70983e-07 2.4375 0.335786 2.4375 0.75C2.4375 1.16421 2.77329 1.5 3.1875 1.5H9.1875V7.5C9.1875 7.91421 9.52329 8.25 9.9375 8.25C10.3517 8.25 10.6875 7.91421 10.6875 7.5L10.6875 0.75ZM0.75 9.9375L1.28033 10.4678L10.4678 1.28033L9.9375 0.75L9.40717 0.21967L0.21967 9.40717L0.75 9.9375Z" fill="currentColor"></path>
-                                        </svg>
-                                    </i>
-                                </a>
+<% if (project.closing_image_1) { -%>
+                            <div class="col-12 pb-50">
+                                <img src="<%- esc(project.closing_image_1) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100">
                             </div>
+<% } -%>
+<% if (project.closing_image_2) { -%>
+                            <div class="col-12">
+                                <img src="<%- esc(project.closing_image_2) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100">
+                            </div>
+<% } -%>
                         </div>
                     </div>
                 </div>
-                <!-- About section 7 -->
-                <div class="sec-7-about py-5 overflow-hidden">
-                    <div class="container py-5">
-                        <div class="row g-5">
-                            <div class="col-lg-4">
+                <!-- portfolio-details-1 section 2 -->
+                <div class="sec-2-portfolio-details-1 overflow-hidden pt-100 pb-100 bg-neutral-50">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
                                 <span class="at-btn common-black text-uppercase bg-transparent mb-10 rounded-0 p-0">
                                     <span class="text-uppercase">
-                                        <span class="text-1">FAQ</span>
-                                        <span class="text-2">FAQ</span>
+                                        <span class="text-1">Related projects</span>
+                                        <span class="text-2">Related projects</span>
                                     </span>
                                     <i>
                                         <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -385,67 +446,34 @@
                                         </svg>
                                     </i>
                                 </span>
-                                <h3 class="section-title lh-1 reveal-text">Frequently <br> Asked Questions</h3>
-                                <h4 class="h6 fz-font-lg fw-500">
-                                    Questions about my process, services <br class="d-none d-xxl-block"> and workflow &mdash; answered.
-                                </h4>
                             </div>
-                            <div class="col-lg-7 ms-lg-auto">
-                                <div class="accordion pt-80" id="accordionExample">
-                                    <div class="at-faq-item bg-neutral-0 border-100 scroll-move-up rounded-4">
-                                        <div class="at-faq-header d-flex gap-2">
-                                            <div class="box-number">
-                                                <span class="at-faq-number">1</span>
+                        </div>
+                        <div class="row mt-30">
+<% relatedProjects.forEach(function (related) { -%>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="alt-portfolio-item at-hover-item mb-30">
+                                    <a href="<%- esc(detailUrl(related)) %>" class="alt-portfolio-thumb p-relative fix d-block">
+                                        <img class="w-100 scale-img-from-to" data-value-1="1.5" data-value-2="1" src="<%- esc(related.related_image || related.cover_image) %>" alt="<%- esc(related.cover_alt || related.title) %>">
+                                        <div class="alt-portfolio-btn">
+                                            <div class="content">
+                                                <span class="bg-transparent text-uppercase border px-3 py-1 rounded-pill text-white fz-font-label"><%- esc(related.category_label) %></span>
+                                                <h2 class="fw-400 fz-font-3xl text-white mb-0 mt-20"><%- esc(related.title) %></h2>
+                                                <p class="text-white fz-font-md mb-0 mt-10 text-truncate-2 des"><%- esc(related.short_description) %></p>
                                             </div>
-                                            <button class="at-faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How does your design process work?</button>
                                         </div>
-                                        <div id="collapseOne" class="at-faq-collapse collapse show" data-bs-parent="#accordionExample">
-                                            <div class="at-faq-body">
-                                                <p>Discovery and research, wireframes and user flows, UI design and prototyping, then developer handoff and design QA &mdash; with feedback at every stage.</p>
-                                            </div>
-                                        </div>
+                                    </a>
+                                    <div class="alt-portfolio-content d-flex justify-content-between mt-15">
+                                        <h3 class="h5 alt-portfolio-title mb-0"><a href="<%- esc(detailUrl(related)) %>" class="common-underline"><%- esc(related.title) %></a></h3>
+                                        <span class="alt-portfolio-plus neutral-950">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                                <path d="M4.512 10.8V0H6.984V10.8H4.512ZM0 6.6V4.2H11.52V6.6H0Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
                                     </div>
-                                    <div class="at-faq-item bg-neutral-0 border-100 scroll-move-up rounded-4">
-                                        <div class="at-faq-header d-flex gap-2">
-                                            <div class="box-number">
-                                                <span class="at-faq-number">2</span>
-                                            </div>
-                                            <button class="at-faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How long does a typical project take?</button>
-                                        </div>
-                                        <div id="collapseTwo" class="at-faq-collapse collapse" data-bs-parent="#accordionExample">
-                                            <div class="at-faq-body">
-                                                <p>It depends on scope. A focused landing page or app screen set moves quickly; a full product UI or design system takes longer. I agree milestones before starting.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="at-faq-item bg-neutral-0 border-100 scroll-move-up rounded-4">
-                                        <div class="at-faq-header d-flex gap-2">
-                                            <div class="box-number">
-                                                <span class="at-faq-number">3</span>
-                                            </div>
-                                            <button class="at-faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Do you work with startups or only established brands?</button>
-                                        </div>
-                                        <div id="collapseThree" class="at-faq-collapse collapse" data-bs-parent="#accordionExample">
-                                            <div class="at-faq-body">
-                                                <p>Both. I have designed for e-commerce, fintech, real estate and technology companies of very different sizes, in the UAE and India.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="at-faq-item bg-neutral-0 border-100 scroll-move-up rounded-4">
-                                        <div class="at-faq-header d-flex gap-2">
-                                            <div class="box-number">
-                                                <span class="at-faq-number">4</span>
-                                            </div>
-                                            <button class="at-faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Can you handle custom or complex requests?</button>
-                                        </div>
-                                        <div id="collapseFour" class="at-faq-collapse collapse" data-bs-parent="#accordionExample">
-                                            <div class="at-faq-body">
-                                                <p>Yes &mdash; responsive web and mobile UI, design systems, branding and visual identity, wireframing, prototyping and interaction design.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
+<% }); -%>
                         </div>
                     </div>
                 </div>

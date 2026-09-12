@@ -27,30 +27,86 @@ const projects = createRepository({
     'open_in_new_tab',
     'badge_text',
     'cta_label',
+    'page_title',
+    'meta_description',
+    'hero_superscript',
+    'hero_subtitle',
+    'hero_image',
+    'secondary_image',
+    'live_demo_url',
+    'live_demo_label',
+    'role',
+    'solution_text',
+    'features_json',
+    'outcome_text',
+    'closing_image_1',
+    'closing_image_2',
+    'testimonial_id',
+    'related_image',
+    'related_slugs_json',
     'position',
     'is_visible'
   ],
   searchColumns: ['title', 'slug', 'short_description', 'client_name', 'year']
 });
 
+/** Tolerant JSON array read - a malformed column must not break a page. */
+function parseJsonArray(value) {
+  try {
+    const parsed = JSON.parse(value || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
 function parseGallery(row) {
   if (!row) return row;
-  let gallery = [];
-  try {
-    const parsed = JSON.parse(row.gallery_json || '[]');
-    if (Array.isArray(parsed)) {
-      gallery = parsed
-        .map((g) =>
-          typeof g === 'string'
-            ? { src: g, alt: '' }
-            : { src: String(g.src || ''), alt: String(g.alt || '') }
-        )
-        .filter((g) => g.src);
-    }
-  } catch {
-    gallery = [];
+
+  const gallery = parseJsonArray(row.gallery_json)
+    .map((g) =>
+      typeof g === 'string'
+        ? { src: g, alt: '' }
+        : { src: String(g.src || ''), alt: String(g.alt || '') }
+    )
+    .filter((g) => g.src);
+
+  const features = parseJsonArray(row.features_json)
+    .map((f) => String(typeof f === 'string' ? f : f.text || ''))
+    .filter(Boolean);
+
+  const relatedSlugs = parseJsonArray(row.related_slugs_json)
+    .map((s) => String(s || ''))
+    .filter(Boolean);
+
+  return { ...row, gallery, features, relatedSlugs };
+}
+
+/** The URL of a project's own page. */
+function detailUrl(project) {
+  return 'portfolio-details.html?slug=' + encodeURIComponent(project.slug);
+}
+
+/**
+ * The projects shown in a page's "Related projects" strip.
+ *
+ * An explicit list wins; otherwise the following projects in display order are
+ * used, wrapping around, so a new project gets a sensible strip with no setup.
+ */
+function relatedFor(project, limit = 3) {
+  const all = listWithCategory({ visibleOnly: true });
+  const others = all.filter((p) => p.id !== project.id);
+
+  if (project.relatedSlugs && project.relatedSlugs.length) {
+    const bySlug = new Map(others.map((p) => [p.slug, p]));
+    const chosen = project.relatedSlugs.map((s) => bySlug.get(s)).filter(Boolean);
+    if (chosen.length) return chosen.slice(0, limit);
   }
-  return { ...row, gallery };
+
+  const start = others.findIndex((p) => p.position > project.position);
+  const from = start === -1 ? 0 : start;
+  const wrapped = others.slice(from).concat(others.slice(0, from));
+  return wrapped.slice(0, limit);
 }
 
 /**
@@ -137,6 +193,8 @@ module.exports = {
     listWithCategory,
     findBySlug,
     slugExists,
+    detailUrl,
+    relatedFor,
     published: () => listWithCategory({ visibleOnly: true })
   }
 };

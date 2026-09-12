@@ -143,11 +143,22 @@ function main() {
       const bySlug = new Map(
         db.all('SELECT id, slug FROM portfolio_categories').map((c) => [c.slug, c.id])
       );
+      // The detail page quotes a homepage testimonial; resolve it by name.
+      const testimonialByName = new Map(
+        db.all('SELECT id, client_name FROM testimonials').map((t) => [t.client_name, t.id])
+      );
+
       data.portfolio.projects.forEach((project) => {
-        const { category_slug: categorySlug, ...rest } = project;
+        const {
+          category_slug: categorySlug,
+          testimonial_name: testimonialName,
+          ...rest
+        } = project;
+
         insert('portfolio_projects', {
           ...rest,
-          category_id: bySlug.get(categorySlug) || null
+          category_id: bySlug.get(categorySlug) || null,
+          testimonial_id: testimonialName ? testimonialByName.get(testimonialName) || null : null
         });
       });
       console.log('  portfolio_projects  : ' + data.portfolio.projects.length);

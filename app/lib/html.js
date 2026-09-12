@@ -51,7 +51,15 @@ const DECODE_ENTITIES = new Map([
   ['rdquo', '”'],
   ['bull', '•'],
   ['hellip', '…'],
-  ['trade', '™']
+  ['trade', '™'],
+  ['middot', '·'],
+  ['times', '×'],
+  ['deg', '°'],
+  ['laquo', '«'],
+  ['raquo', '»'],
+  ['euro', '€'],
+  ['pound', '£'],
+  ['plusmn', '±']
 ]);
 
 /** Inverse of `esc`. Used when seeding content lifted out of the original HTML. */

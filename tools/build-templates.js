@@ -652,10 +652,12 @@ function buildPortfolio() {
       'data-category="<%- esc(item.category_slug || \'\') %>">',
       'project category'
     );
+    // Every card now opens the project's own detail page. The client's own site
+    // is still reachable, as the "live demo" link on that page.
     card = replaceAll(
       card,
       '<a target="_blank" rel="noopener" href="https://iamsreelalck.com/project/branding-and-digital-presence"',
-      '<a<% if (item.open_in_new_tab) { %> target="_blank" rel="noopener"<% } %> href="<%- esc(safeUrl(item.link)) %>"',
+      '<a href="<%- esc(detailUrl(item)) %>"',
       'project links'
     );
     card = replaceOnce(
@@ -714,13 +716,312 @@ function buildPortfolio() {
 }
 
 // ===========================================================================
+// portfolio-details.html
+//
+// One hand-written page becomes the template every project renders through.
+// Optional sections are wrapped in a conditional so a project that has not
+// filled them in yet gets a clean page rather than empty headings.
+// ===========================================================================
+function buildProjectDetail() {
+  let html = read('portfolio-details.html');
+
+  html = replaceOnce(
+    html,
+    '<title>Krooqi — Real Estate UX Case Study | Sreelal C K</title>',
+    '<title><%- esc(project.page_title) %></title>',
+    'detail title'
+  );
+  html = replaceOnce(
+    html,
+    '<meta name="description" content="Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.">\n    <title>',
+    '<meta name="description" content="<%- esc(project.meta_description) %>">\n    <title>',
+    'detail meta description'
+  );
+
+  // -- Hero ----------------------------------------------------------------
+  html = replaceOnce(
+    html,
+    '<h1 class="fz-ds-1 lh-1 fw-500 d-flex mb-0">Krooqi<sup class="fz-80 fw-400 top-0">®</sup></h1>',
+    '<h1 class="fz-ds-1 lh-1 fw-500 d-flex mb-0"><%- esc(project.title) %>' +
+      '<% if (project.hero_superscript) { %><sup class="fz-80 fw-400 top-0"><%- esc(project.hero_superscript) %></sup><% } %></h1>',
+    'detail heading'
+  );
+  html = replaceOnce(
+    html,
+    '<h2 class="h5 fw-600 mb-0">UI/UX Design &middot; Mobile UI &middot; Real Estate UX</h2>',
+    '<h2 class="h5 fw-600 mb-0"><%- esc(project.hero_subtitle) %></h2>',
+    'detail subtitle'
+  );
+
+  // The live-demo button only makes sense when the project has a URL.
+  {
+    const open = '                            <div class="col-md-3 ms-auto text-md-end">\n';
+    const close = '                            </div>\n                        </div>\n';
+    const start = html.indexOf(open);
+    const end = html.indexOf(close, start);
+    if (start === -1 || end === -1) throw new Error('build-templates: live demo block not found');
+
+    const block = html
+      .slice(start + open.length, end)
+      .replace(
+        '<a href="https://iamsreelalck.com/project/krooqi" target="_blank" rel="noopener" class="border-bottom-900 d-inline-block">',
+        '<a href="<%- esc(safeUrl(project.live_demo_url)) %>" target="_blank" rel="noopener" class="border-bottom-900 d-inline-block">'
+      )
+      .split('<span class="text-1">live demo</span>')
+      .join('<span class="text-1"><%- esc(project.live_demo_label) %></span>')
+      .split('<span class="text-2">live demo</span>')
+      .join('<span class="text-2"><%- esc(project.live_demo_label) %></span>');
+
+    html =
+      html.slice(0, start + open.length) +
+      '<% if (project.live_demo_url) { -%>\n' +
+      block +
+      '<% } -%>\n' +
+      html.slice(end);
+  }
+
+  html = replaceOnce(
+    html,
+    '<img src="images/img-181.webp" alt="Sreelal C K" class="w-100">',
+    '<img src="<%- esc(project.hero_image) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100">',
+    'detail hero image'
+  );
+
+  // The intro paragraph appears twice in the original, with identical text.
+  html = replaceAll(
+    html,
+    'As the UI/UX Designer for Krooqi, I was responsible for crafting a clean, user-friendly interface that simplifies the process of finding and renting residential properties. I designed intuitive user flows, responsive layouts and interactive prototypes, ensuring a smooth experience across mobile and desktop.',
+    '<%- esc(project.full_description) %>',
+    'detail intro'
+  );
+
+  html = replaceOnce(
+    html,
+    '<img src="images/img-182.webp" alt="Sreelal C K">',
+    '<img src="<%- esc(project.secondary_image) %>" alt="<%- esc(project.cover_alt || project.title) %>">',
+    'detail secondary image'
+  );
+
+  // -- Introduction meta rows ----------------------------------------------
+  const metaRow = (label, value, field) =>
+    replaceOnce(
+      html,
+      `<p class="fz-font-md neutral-900 mb-0">${label}</p>\n` +
+        ' '.repeat(40) +
+        `<p class="fz-font-lg fw-600 mb-0 neutral-900">${value}</p>`,
+      `<p class="fz-font-md neutral-900 mb-0">${label}</p>\n` +
+        ' '.repeat(40) +
+        `<p class="fz-font-lg fw-600 mb-0 neutral-900"><%- esc(project.${field}) %></p>`,
+      `detail meta ${label}`
+    );
+
+  html = metaRow('Client', 'Ewaantech', 'client_name');
+  html = metaRow('Release Date', '2021', 'year');
+  html = metaRow('Role', 'UI/UX Designer', 'role');
+  html = metaRow('Category', 'Real Estate UX', 'category_label');
+
+  // -- Solution + key features ---------------------------------------------
+  html = replaceOnce(
+    html,
+    '<p class="fz-font-xl neutral-900">A clean, consistent interface built around clear user flows and responsive layouts, so property discovery works the same way on mobile and desktop for both tenants and landlords.</p>',
+    '<p class="fz-font-xl neutral-900"><%- esc(project.solution_text) %></p>',
+    'detail solution text'
+  );
+
+  {
+    const heading = '                                    <h3 class="h6 py-3">Key Features</h3>\n';
+    const ulOpen = '                                    <ul class="ps-4">\n';
+    const ulClose = '                                    </ul>\n';
+    const start = html.indexOf(heading);
+    const end = html.indexOf(ulClose, start) + ulClose.length;
+    if (start === -1) throw new Error('build-templates: key features block not found');
+
+    html =
+      html.slice(0, start) +
+      '<% if (project.features.length) { -%>\n' +
+      heading +
+      ulOpen +
+      '<% project.features.forEach(function (feature) { -%>\n' +
+      '                                        <li class="neutral-950"><%- esc(feature) %></li>\n' +
+      '<% }); -%>\n' +
+      ulClose +
+      '<% } -%>\n' +
+      html.slice(end);
+  }
+
+  html = replaceOnce(
+    html,
+    '<p class="fz-font-xl fw-500 neutral-900 mb-0">The result makes property discovery fast, engaging and accessible &mdash; a rental platform that stays clear and usable at every step, on any screen size.</p>',
+    '<p class="fz-font-xl fw-500 neutral-900 mb-0"><%- esc(project.outcome_text) %></p>',
+    'detail outcome text'
+  );
+
+  // -- Gallery slider -------------------------------------------------------
+  {
+    const r = region(
+      html,
+      '                    <div class="swiper about-me-slider-active pt-100 pb-100 at-item-anime-area">\n                        <div class="swiper-wrapper">\n',
+      '                        </div>\n                    </div>\n                    <div class="container">',
+      'detail gallery'
+    );
+
+    const { blocks } = splitBlocks(r.body, '                            <div class="swiper-slide">\n');
+    if (blocks.length !== 5) {
+      throw new Error(`build-templates: expected 5 gallery slides, found ${blocks.length}`);
+    }
+
+    const slide = blocks[0].replace(
+      '<img class="w-100 rounded-4" src="images/img-177.webp" alt="Sreelal C K">',
+      '<img class="w-100 rounded-4" src="<%- esc(image.src) %>" alt="<%- esc(image.alt || project.title) %>">'
+    );
+
+    html = r.replace(
+      '<% project.gallery.forEach(function (image) { -%>\n' + slide + '<% }); -%>\n'
+    );
+  }
+
+  // -- Testimonial and closing images ---------------------------------------
+  {
+    const open = '                            <div class="col-lg-7 ms-auto">\n';
+    const close = '                            <div class="col-12 pb-50">';
+    const start = html.indexOf(open);
+    const end = html.indexOf(close, start);
+    if (start === -1 || end === -1) throw new Error('build-templates: testimonial block not found');
+
+    const block = html
+      .slice(start + open.length, end)
+      .replace(
+        '<img src="images/avatar-20.webp" alt="Sreelal C K">',
+        '<img src="<%- esc(project.testimonial.avatar) %>" alt="<%- esc(project.testimonial.avatar_alt) %>">'
+      )
+      .replace(
+        /<p class="fz-3xl neutral-900 fw-400">[\s\S]*?<\/p>/,
+        '<p class="fz-3xl neutral-900 fw-400">&ldquo;<%- esc(project.testimonial.quote) %>&rdquo;</p>'
+      )
+      .replace(
+        /<h3 class="h6 testimonial-content-author-name fw-600 mb-0 fz-font-md">[\s\S]*?<\/h3>/,
+        '<h3 class="h6 testimonial-content-author-name fw-600 mb-0 fz-font-md"><%- esc(project.testimonial.client_name) %></h3>'
+      )
+      .replace(
+        /<p class="testimonial-content-author-position m-0 fz-font-label">[\s\S]*?<\/p>/,
+        '<p class="testimonial-content-author-position m-0 fz-font-label"><%- esc(project.testimonial.company) %></p>'
+      );
+
+    html =
+      html.slice(0, start) +
+      '<% if (project.testimonial) { -%>\n' +
+      open +
+      block +
+      '<% } -%>\n' +
+      html.slice(end);
+  }
+
+  {
+    const block1 =
+      '                            <div class="col-12 pb-50">\n' +
+      '                                <img src="images/img-187.webp" alt="Sreelal C K" class="w-100">\n' +
+      '                            </div>\n';
+    const block2 =
+      '                            <div class="col-12">\n' +
+      '                                <img src="images/img-188.webp" alt="Sreelal C K" class="w-100">\n' +
+      '                            </div>\n';
+
+    html = replaceOnce(
+      html,
+      block1,
+      '<% if (project.closing_image_1) { -%>\n' +
+        block1.replace(
+          'src="images/img-187.webp" alt="Sreelal C K"',
+          'src="<%- esc(project.closing_image_1) %>" alt="<%- esc(project.cover_alt || project.title) %>"'
+        ) +
+        '<% } -%>\n',
+      'detail closing image 1'
+    );
+    html = replaceOnce(
+      html,
+      block2,
+      '<% if (project.closing_image_2) { -%>\n' +
+        block2.replace(
+          'src="images/img-188.webp" alt="Sreelal C K"',
+          'src="<%- esc(project.closing_image_2) %>" alt="<%- esc(project.cover_alt || project.title) %>"'
+        ) +
+        '<% } -%>\n',
+      'detail closing image 2'
+    );
+  }
+
+  // -- Related projects -----------------------------------------------------
+  {
+    const r = region(
+      html,
+      '                        <div class="row mt-30">\n',
+      '                        </div>\n                    </div>\n                </div>\n            </main>',
+      'detail related projects'
+    );
+
+    const { blocks } = splitBlocks(r.body, '                            <div class="col-lg-4 col-md-6">\n');
+    if (blocks.length !== 3) {
+      throw new Error(`build-templates: expected 3 related projects, found ${blocks.length}`);
+    }
+
+    let card = blocks[0];
+    card = replaceOnce(
+      card,
+      '<a href="portfolio-details.html" class="alt-portfolio-thumb p-relative fix d-block">',
+      '<a href="<%- esc(detailUrl(related)) %>" class="alt-portfolio-thumb p-relative fix d-block">',
+      'related thumb link'
+    );
+    card = replaceOnce(
+      card,
+      'src="images/img-184.webp" alt="Sreelal C K"',
+      'src="<%- esc(related.related_image || related.cover_image) %>" alt="<%- esc(related.cover_alt || related.title) %>"',
+      'related image'
+    );
+    card = replaceOnce(
+      card,
+      '>Branding</span>',
+      '><%- esc(related.category_label) %></span>',
+      'related pill'
+    );
+    card = replaceOnce(
+      card,
+      '<h2 class="fw-400 fz-font-3xl text-white mb-0 mt-20">Spunk Systems</h2>',
+      '<h2 class="fw-400 fz-font-3xl text-white mb-0 mt-20"><%- esc(related.title) %></h2>',
+      'related title'
+    );
+    card = replaceOnce(
+      card,
+      'Brand identity, logo and a complete visual system for an IT consulting firm.',
+      '<%- esc(related.short_description) %>',
+      'related description'
+    );
+    card = replaceOnce(
+      card,
+      '<a href="https://iamsreelalck.com/project/branding-and-digital-presence" target="_blank" rel="noopener" class="common-underline">Spunk Systems</a>',
+      '<a href="<%- esc(detailUrl(related)) %>" class="common-underline"><%- esc(related.title) %></a>',
+      'related title link'
+    );
+
+    html = r.replace(
+      '<% relatedProjects.forEach(function (related) { -%>\n' +
+        '                            <div class="col-lg-4 col-md-6">\n' +
+        card.slice('                            <div class="col-lg-4 col-md-6">\n'.length) +
+        '<% }); -%>\n'
+    );
+  }
+
+  return html;
+}
+
+// ===========================================================================
 
 fs.mkdirSync(OUT, { recursive: true });
 
 const outputs = {
   'index.ejs': buildIndex(),
   'services.ejs': buildServices(),
-  'portfolio.ejs': buildPortfolio()
+  'portfolio.ejs': buildPortfolio(),
+  'portfolio-details.ejs': buildProjectDetail()
 };
 
 for (const [name, content] of Object.entries(outputs)) {
