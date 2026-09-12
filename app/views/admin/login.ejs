@@ -1,0 +1,30 @@
+<%- include('partials/head') %>
+
+<main class="admin-login">
+    <form class="admin-login__card" method="post" action="<%= adminPath %>/login" autocomplete="on">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <h1 class="admin-login__title">Site admin</h1>
+        <p class="admin-login__subtitle">Sign in to manage the site content.</p>
+
+        <% if (error) { %>
+            <div class="admin-flash admin-flash--error" role="alert"><%= error %></div>
+        <% } %>
+
+        <label class="admin-field">
+            <span class="admin-field__label">Username</span>
+            <input class="admin-input" type="text" name="username" value="<%= username %>"
+                   autocomplete="username" required autofocus>
+        </label>
+
+        <label class="admin-field">
+            <span class="admin-field__label">Password</span>
+            <input class="admin-input" type="password" name="password"
+                   autocomplete="current-password" required>
+        </label>
+
+        <button class="admin-btn admin-btn--primary admin-btn--block" type="submit">Sign in</button>
+    </form>
+</main>
+
+<%- include('partials/foot') %>

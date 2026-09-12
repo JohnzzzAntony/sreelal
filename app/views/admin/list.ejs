@@ -1,0 +1,183 @@
+<%- include('partials/head') %>
+
+<div class="admin-page-head">
+    <div>
+        <% if (parent) { %>
+            <p class="admin-breadcrumb">
+                <a href="<%= adminPath %>/<%= resource.parentResource %>"><%= resources[resource.parentResource].title %></a>
+                <span aria-hidden="true">/</span>
+                <%= rowLabel(resources[resource.parentResource], parent) %>
+            </p>
+        <% } %>
+        <h1 class="admin-page-title">
+            <%= resource.title %><% if (parent) { %>: <%= rowLabel(resources[resource.parentResource], parent) %><% } %>
+        </h1>
+        <p class="admin-page-description"><%= resource.description %></p>
+    </div>
+    <% if (!resource.fixedRows) { %>
+        <a class="admin-btn admin-btn--primary"
+           href="<%= adminPath %>/<%= resource.key %>/new<%= parent ? '?' + resource.parentKey + '=' + parent.id : '' %>">
+            Add <%= resource.singular.toLowerCase() %>
+        </a>
+    <% } %>
+</div>
+
+<form class="admin-filters" method="get" action="<%= adminPath %>/<%= resource.key %>">
+    <% if (parent) { %>
+        <input type="hidden" name="<%= resource.parentKey %>" value="<%= parent.id %>">
+    <% } %>
+
+    <label class="admin-field admin-field--inline">
+        <span class="admin-field__label">Search</span>
+        <input class="admin-input" type="search" name="q" value="<%= search %>"
+               placeholder="Search <%= resource.title.toLowerCase() %>">
+    </label>
+
+    <label class="admin-field admin-field--inline">
+        <span class="admin-field__label">Visibility</span>
+        <select class="admin-input" name="visibility">
+            <option value="">All</option>
+            <option value="visible" <%= visibility === 'visible' ? 'selected' : '' %>>Visible only</option>
+            <option value="hidden" <%= visibility === 'hidden' ? 'selected' : '' %>>Hidden only</option>
+        </select>
+    </label>
+
+    <% if (categories.length) { %>
+        <label class="admin-field admin-field--inline">
+            <span class="admin-field__label">Category</span>
+            <select class="admin-input" name="category">
+                <option value="">All</option>
+                <% categories.forEach(function (category) { %>
+                    <option value="<%= category.id %>"
+                        <%= String(categoryId) === String(category.id) ? 'selected' : '' %>>
+                        <%= category.name %>
+                    </option>
+                <% }); %>
+            </select>
+        </label>
+    <% } %>
+
+    <button class="admin-btn" type="submit">Apply</button>
+    <% if (search || visibility || categoryId) { %>
+        <a class="admin-link" href="<%= listUrl %>">Clear</a>
+    <% } %>
+</form>
+
+<% if (!rows.length) { %>
+    <p class="admin-empty">
+        Nothing here yet.
+        <% if (!resource.fixedRows) { %>
+            <a href="<%= adminPath %>/<%= resource.key %>/new<%= parent ? '?' + resource.parentKey + '=' + parent.id : '' %>">
+                Add the first <%= resource.singular.toLowerCase() %></a>.
+        <% } %>
+    </p>
+<% } else { %>
+    <p class="admin-hint">Drag a row by its handle to reorder, or use the arrows. Order is saved immediately.</p>
+
+    <table class="admin-table" data-reorder-url="<%= adminPath %>/<%= resource.key %>/reorder"
+           data-csrf="<%= csrfToken %>">
+        <thead>
+            <tr>
+                <th class="admin-table__handle-col"><span class="visually-hidden">Reorder</span></th>
+                <% resource.listColumns.forEach(function (column) { %>
+                    <th><%= column.replace(/_/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); }) %></th>
+                <% }); %>
+                <th>Visible</th>
+                <th class="admin-table__actions-col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% rows.forEach(function (row, index) { %>
+            <tr data-id="<%= row.id %>" class="<%= row.is_visible ? '' : 'is-hidden-row' %>">
+                <td class="admin-table__handle" title="Drag to reorder">⠿</td>
+
+                <% resource.listColumns.forEach(function (column) { %>
+                    <td>
+                        <% if (/image$|^avatar$/.test(column)) { %>
+                            <% if (row[column]) { %>
+                                <img class="admin-thumb" src="/<%= row[column] %>" alt="">
+                            <% } else { %>
+                                <span class="admin-muted">&mdash;</span>
+                            <% } %>
+                        <% } else if (column === 'link') { %>
+                            <% if (row.link) { %>
+                                <a class="admin-link admin-link--truncate" href="<%= row.link %>"
+                                   target="_blank" rel="noopener"><%= row.link %></a>
+                            <% } else { %>
+                                <span class="admin-muted">&mdash;</span>
+                            <% } %>
+                        <% } else if (column === 'category') { %>
+                            <%= row.category_name || '—' %>
+                        <% } else if (column === 'projectCount') { %>
+                            <%= row.projectCount %> project<%= row.projectCount === 1 ? '' : 's' %>
+                        <% } else if (column === 'usage') { %>
+                            <% if (row.usage) { %>
+                                in <%= row.usage %> grid slot<%= row.usage === 1 ? '' : 's' %>
+                            <% } else { %>
+                                <span class="admin-muted">not in the grid</span>
+                            <% } %>
+                        <% } else if (column === 'slideSummary') { %>
+                            <% if (row.slideSummary) { %>
+                                <%= row.slideSummary %>
+                            <% } else { %>
+                                <span class="admin-muted">no logos assigned</span>
+                            <% } %>
+                        <% } else if (column === 'value') { %>
+                            <span class="admin-link--truncate" title="<%= row.value %>"><%= row.value %></span>
+                        <% } else if (column === 'rating') { %>
+                            <span title="<%= row.rating %> of 5"><%= '★'.repeat(row.rating) %><span class="admin-muted"><%= '☆'.repeat(5 - row.rating) %></span></span>
+                        <% } else { %>
+                            <%= row[column] || '—' %>
+                        <% } %>
+                    </td>
+                <% }); %>
+
+                <td>
+                    <form method="post" action="<%= adminPath %>/<%= resource.key %>/<%= row.id %>/visibility">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="admin-toggle <%= row.is_visible ? 'is-on' : '' %>"
+                                aria-pressed="<%= row.is_visible ? 'true' : 'false' %>"
+                                title="<%= row.is_visible ? 'Visible - click to hide' : 'Hidden - click to show' %>">
+                            <span class="visually-hidden"><%= row.is_visible ? 'Hide' : 'Show' %></span>
+                        </button>
+                    </form>
+                </td>
+
+                <td class="admin-table__actions">
+                    <form method="post" action="<%= adminPath %>/<%= resource.key %>/<%= row.id %>/move" class="d-inline">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="direction" value="up">
+                        <button class="admin-btn admin-btn--icon" type="submit" title="Move up"
+                                <%= index === 0 ? 'disabled' : '' %>>↑</button>
+                    </form>
+                    <form method="post" action="<%= adminPath %>/<%= resource.key %>/<%= row.id %>/move" class="d-inline">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="direction" value="down">
+                        <button class="admin-btn admin-btn--icon" type="submit" title="Move down"
+                                <%= index === rows.length - 1 ? 'disabled' : '' %>>↓</button>
+                    </form>
+
+                    <% if (resource.childResource) { %>
+                        <a class="admin-btn admin-btn--small"
+                           href="<%= adminPath %>/<%= resource.childResource %>?section_id=<%= row.id %>">
+                            Items (<%= row.itemCount %>)
+                        </a>
+                    <% } %>
+
+                    <a class="admin-btn admin-btn--small" href="<%= adminPath %>/<%= resource.key %>/<%= row.id %>/edit">Edit</a>
+
+                    <% if (!resource.fixedRows) { %>
+                        <form method="post" action="<%= adminPath %>/<%= resource.key %>/<%= row.id %>/delete" class="d-inline"
+                              data-confirm="Delete this <%= resource.singular.toLowerCase() %>? This cannot be undone.">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="admin-btn admin-btn--small admin-btn--danger" type="submit">Delete</button>
+                        </form>
+                    <% } %>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } %>
+
+<%- include('partials/foot') %>

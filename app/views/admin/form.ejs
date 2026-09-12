@@ -1,0 +1,138 @@
+<%
+// `values` is set only when re-rendering a rejected submission, so the editor
+// never loses what they typed. Otherwise fall back to the stored row.
+function fieldValue(field) {
+    if (values) {
+        var submitted = values[field.name];
+        return submitted === undefined ? '' : submitted;
+    }
+    return formValue(field, row);
+}
+%>
+<%- include('partials/head') %>
+
+<div class="admin-page-head">
+    <div>
+        <p class="admin-breadcrumb">
+            <a href="<%= listUrl %>"><%= resource.title %></a>
+            <% if (parent) { %>
+                <span aria-hidden="true">/</span> <%= rowLabel(resources[resource.parentResource], parent) %>
+            <% } %>
+        </p>
+        <h1 class="admin-page-title">
+            <%= resource.fixedRows && row ? row.label : title %>
+        </h1>
+        <% if (resource.fixedRows && row && row.description) { %>
+            <p class="admin-page-description"><%= row.description %></p>
+        <% } %>
+    </div>
+    <a class="admin-link" href="<%= listUrl %>">Back to list</a>
+</div>
+
+<% if (Object.keys(errors).length) { %>
+    <div class="admin-flash admin-flash--error">Please correct the highlighted fields.</div>
+<% } %>
+
+<form class="admin-form" method="post" enctype="multipart/form-data"
+      action="<%= adminPath %>/<%= resource.key %><%= row ? '/' + row.id : '' %>">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <% if (parent) { %>
+        <input type="hidden" name="<%= resource.parentKey %>" value="<%= parent.id %>">
+    <% } %>
+
+    <% resource.fields.forEach(function (field) { %>
+        <% var value = fieldValue(field); var error = errors[field.name]; %>
+
+        <div class="admin-field <%= error ? 'has-error' : '' %> <%= field.advanced ? 'admin-field--advanced' : '' %>">
+            <label class="admin-field__label" for="field-<%= field.name %>">
+                <%= field.label %><% if (field.required) { %> <span class="admin-required">*</span><% } %>
+            </label>
+
+            <% if (field.type === 'textarea' || field.type === 'tags' || field.type === 'gallery') { %>
+                <textarea class="admin-input admin-input--area" id="field-<%= field.name %>"
+                          name="<%= field.name %>" rows="<%= field.rows || 4 %>"><%= value %></textarea>
+
+            <% } else if (field.type === 'checkbox') { %>
+                <span class="admin-checkbox">
+                    <input type="hidden" name="<%= field.name %>" value="0">
+                    <input type="checkbox" id="field-<%= field.name %>" name="<%= field.name %>" value="1"
+                           <%= String(value) === '1' || value === 1 || value === true ? 'checked' : '' %>>
+                    <label for="field-<%= field.name %>">Yes</label>
+                </span>
+
+            <% } else if (field.type === 'select') { %>
+                <select class="admin-input" id="field-<%= field.name %>" name="<%= field.name %>">
+                    <% field.options.forEach(function (option) { %>
+                        <option value="<%= option.value %>" <%= String(value) === option.value ? 'selected' : '' %>>
+                            <%= option.label %>
+                        </option>
+                    <% }); %>
+                </select>
+
+            <% } else if (field.type === 'reference') { %>
+                <select class="admin-input" id="field-<%= field.name %>" name="<%= field.name %>">
+                    <option value="">None</option>
+                    <% field.source().forEach(function (option) { %>
+                        <option value="<%= option.id %>" <%= String(value) === String(option.id) ? 'selected' : '' %>>
+                            <%= option.name %>
+                        </option>
+                    <% }); %>
+                </select>
+
+            <% } else if (field.type === 'number') { %>
+                <input class="admin-input admin-input--short" type="number" id="field-<%= field.name %>"
+                       name="<%= field.name %>" value="<%= value %>"
+                       <% if (field.min !== undefined) { %>min="<%= field.min %>"<% } %>
+                       <% if (field.max !== undefined) { %>max="<%= field.max %>"<% } %>>
+
+            <% } else if (field.type === 'image') { %>
+                <div class="admin-image-field">
+                    <% if (value) { %>
+                        <img class="admin-image-field__preview" src="/<%= value %>" alt="">
+                    <% } %>
+                    <div class="admin-image-field__inputs">
+                        <input class="admin-input" type="text" id="field-<%= field.name %>"
+                               name="<%= field.name %>" value="<%= value %>"
+                               placeholder="images/example.webp">
+                        <label class="admin-file">
+                            <span>Upload a new image</span>
+                            <input type="file" name="<%= field.name %>" accept="image/*">
+                        </label>
+                    </div>
+                </div>
+
+            <% } else { %>
+                <input class="admin-input" type="text" id="field-<%= field.name %>"
+                       name="<%= field.name %>" value="<%= value %>"
+                       <% if (field.type === 'slug' && field.from) { %>data-slug-from="<%= field.from %>"<% } %>>
+            <% } %>
+
+            <% if (field.help) { %>
+                <p class="admin-field__help"><%= field.help %></p>
+            <% } %>
+            <% if (error) { %>
+                <p class="admin-field__error"><%= error %></p>
+            <% } %>
+        </div>
+    <% }); %>
+
+    <div class="admin-form__actions">
+        <button class="admin-btn admin-btn--primary" type="submit">
+            <%= row ? 'Save changes' : 'Create ' + resource.singular.toLowerCase() %>
+        </button>
+        <a class="admin-link" href="<%= listUrl %>">Cancel</a>
+    </div>
+</form>
+
+<% if (row && !resource.fixedRows) { %>
+    <form class="admin-danger-zone" method="post"
+          action="<%= adminPath %>/<%= resource.key %>/<%= row.id %>/delete"
+          data-confirm="Delete this <%= resource.singular.toLowerCase() %>? This cannot be undone.">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="admin-btn admin-btn--danger" type="submit">
+            Delete this <%= resource.singular.toLowerCase() %>
+        </button>
+    </form>
+<% } %>
+
+<%- include('partials/foot') %>

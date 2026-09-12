@@ -1,0 +1,24 @@
+<%- include('partials/head') %>
+
+<div class="admin-page-head">
+    <h1 class="admin-page-title">Dashboard</h1>
+    <p class="admin-page-description">Everything on the site that can be edited here.</p>
+</div>
+
+<div class="admin-cards">
+    <% summary.forEach(function (entry) { %>
+        <a class="admin-card" href="<%= adminPath %>/<%= entry.resource.key %>">
+            <p class="admin-card__group"><%= entry.resource.group %></p>
+            <h2 class="admin-card__title"><%= entry.resource.title %></h2>
+            <p class="admin-card__description"><%= entry.resource.description %></p>
+            <p class="admin-card__count">
+                <strong><%= entry.visible %></strong> visible
+                <% if (entry.total !== entry.visible) { %>
+                    <span class="admin-muted">&middot; <%= entry.total - entry.visible %> hidden</span>
+                <% } %>
+            </p>
+        </a>
+    <% }); %>
+</div>
+
+<%- include('partials/foot') %>
