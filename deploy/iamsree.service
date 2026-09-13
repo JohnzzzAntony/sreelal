@@ -1,0 +1,22 @@
+[Unit]
+Description=IAMSREE portfolio site
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/srv/iamsree
+EnvironmentFile=/srv/iamsree/.env
+ExecStart=/usr/bin/node app/server.js
+Restart=always
+RestartSec=5
+
+# The process only ever writes to the database and the upload directory.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/iamsree/data /srv/iamsree/IAMSREE/images/uploads
+
+[Install]
+WantedBy=multi-user.target

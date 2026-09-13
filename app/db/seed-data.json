@@ -1,0 +1,1377 @@
+{
+  "generatedFrom": "IAMSREE",
+  "caseStudies": [
+    {
+      "title": "Spunk Systems",
+      "link": "https://iamsreelalck.com/project/branding-and-digital-presence",
+      "open_in_new_tab": 1,
+      "description": "",
+      "image": "images/img-107.webp",
+      "image_alt": "Spunk Systems",
+      "metric_value": "Branding",
+      "metric_label": "IT Consulting",
+      "cta_label": " VIEW CASE STUDY",
+      "tags_json": "[{\"label\":\"Branding\",\"link\":\"portfolio.html\"},{\"label\":\"Visual Identity\",\"link\":\"portfolio.html\"},{\"label\":\"Logo Design\",\"link\":\"portfolio.html\"},{\"label\":\"Brand System\",\"link\":\"portfolio.html\"}]",
+      "position": 0,
+      "is_visible": 1
+    },
+    {
+      "title": "Krooqi",
+      "link": "portfolio-details.html",
+      "open_in_new_tab": 0,
+      "description": "",
+      "image": "images/img-108.webp",
+      "image_alt": "Krooqi",
+      "metric_value": "Real Estate",
+      "metric_label": "Web & Mobile UX",
+      "cta_label": " VIEW CASE STUDY",
+      "tags_json": "[{\"label\":\"UI/UX Design\",\"link\":\"portfolio.html\"},{\"label\":\"Mobile UI\",\"link\":\"portfolio.html\"},{\"label\":\"Real Estate UX\",\"link\":\"portfolio.html\"},{\"label\":\"Prototyping\",\"link\":\"portfolio.html\"}]",
+      "position": 1,
+      "is_visible": 1
+    },
+    {
+      "title": "V Perfumes",
+      "link": "https://www.vperfumes.com",
+      "open_in_new_tab": 1,
+      "description": "",
+      "image": "images/img-109.webp",
+      "image_alt": "V Perfumes",
+      "metric_value": "E-Commerce",
+      "metric_label": "Luxury Retail",
+      "cta_label": " VIEW PROJECT",
+      "tags_json": "[{\"label\":\"E-Commerce\",\"link\":\"portfolio.html\"},{\"label\":\"UI Design\",\"link\":\"portfolio.html\"},{\"label\":\"Responsive Web\",\"link\":\"portfolio.html\"},{\"label\":\"User Flows\",\"link\":\"portfolio.html\"}]",
+      "position": 2,
+      "is_visible": 1
+    },
+    {
+      "title": "Hotpack Global",
+      "link": "https://www.hotpackglobal.com",
+      "open_in_new_tab": 1,
+      "description": "",
+      "image": "images/img-110.webp",
+      "image_alt": "Hotpack Global",
+      "metric_value": "Corporate",
+      "metric_label": "Global Packaging",
+      "cta_label": "VIEW PROJECT",
+      "tags_json": "[{\"label\":\"Corporate Web\",\"link\":\"portfolio.html\"},{\"label\":\"UI/UX Design\",\"link\":\"portfolio.html\"},{\"label\":\"Design System\",\"link\":\"portfolio.html\"},{\"label\":\"Responsive Web\",\"link\":\"portfolio.html\"}]",
+      "position": 3,
+      "is_visible": 1
+    }
+  ],
+  "testimonials": [
+    {
+      "client_name": "Alphan Abdul Rub",
+      "role_title": "",
+      "company": "Asharaf Rasheed SPC",
+      "quote": "Working with Sreelal CK was an absolute pleasure. He brought a clear design vision and creative energy to my branding project, and the results far exceeded my expectations. His approach to UI/UX design is thoughtful, user-focused, and detail-oriented.",
+      "avatar": "images/avatar-10.webp",
+      "avatar_alt": "Sreelal C K",
+      "rating": 3,
+      "column_classes": "order-1",
+      "layout": "header_top",
+      "position": 0,
+      "is_visible": 1
+    },
+    {
+      "client_name": "Maria Ashraf",
+      "role_title": "",
+      "company": "makeMAimage",
+      "quote": "Sreelal CK did an excellent job on our website and logo design. He quickly understood our vision and delivered a clean, modern, and user-friendly result.",
+      "avatar": "images/avatar-12.webp",
+      "avatar_alt": "Sreelal C K",
+      "rating": 3,
+      "column_classes": "order-md-2 order-3",
+      "layout": "header_bottom",
+      "position": 1,
+      "is_visible": 1
+    },
+    {
+      "client_name": "Mujahid Kutty",
+      "role_title": "",
+      "company": "Masrooq Trading LLC",
+      "quote": "His designs were creative, professional, and perfectly aligned with our brand’s identity. From concept to execution, he brought fresh ideas and delivered a cohesive branding package that truly stands out.",
+      "avatar": "images/avatar-16.webp",
+      "avatar_alt": "Sreelal C K",
+      "rating": 3,
+      "column_classes": "order-md-3 order-2",
+      "layout": "header_top",
+      "position": 2,
+      "is_visible": 1
+    }
+  ],
+  "clientProjects": [
+    {
+      "title": "V Perfumes",
+      "description": "Luxury perfume e-commerce platform — responsive product discovery and checkout screens.",
+      "image": "images/img-113.webp",
+      "image_alt": "Sreelal C K",
+      "link": "https://www.vperfumes.com",
+      "open_in_new_tab": 1,
+      "card_style": "feature",
+      "category_label": "e-commerce",
+      "role_label": "",
+      "position": 0,
+      "is_visible": 1
+    },
+    {
+      "title": "The Fresh Market Dubai — fresh produce & grocery retail",
+      "description": "",
+      "image": "images/img-114.webp",
+      "image_alt": "Sreelal C K",
+      "link": "https://www.thefreshmarketdubai.com",
+      "open_in_new_tab": 1,
+      "card_style": "blog",
+      "category_label": "E-Commerce & Retail",
+      "role_label": "UI/UX Designer",
+      "position": 1,
+      "is_visible": 1
+    },
+    {
+      "title": "Hotpack Global — global packaging solutions brand",
+      "description": "",
+      "image": "images/img-115.webp",
+      "image_alt": "Sreelal C K",
+      "link": "https://www.hotpackglobal.com",
+      "open_in_new_tab": 1,
+      "card_style": "blog",
+      "category_label": "Corporate & Enterprise",
+      "role_label": "UI/UX Designer",
+      "position": 2,
+      "is_visible": 1
+    }
+  ],
+  "brands": {
+    "brands": [
+      {
+        "name": "Partner1",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner1.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 0,
+        "is_visible": 1
+      },
+      {
+        "name": "Partner2",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner2.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 1,
+        "is_visible": 1
+      },
+      {
+        "name": "Partner3",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner3.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 2,
+        "is_visible": 1
+      },
+      {
+        "name": "Partner7",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner7.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 3,
+        "is_visible": 1
+      },
+      {
+        "name": "Partner8",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner8.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 4,
+        "is_visible": 1
+      },
+      {
+        "name": "Partner4",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner4.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 5,
+        "is_visible": 1
+      },
+      {
+        "name": "Partner5",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner5.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 6,
+        "is_visible": 1
+      },
+      {
+        "name": "Partner6",
+        "image": "https://iamsreelalck.com/uploads/client/thumb_partner6.png",
+        "image_alt": "Sreelal C K",
+        "link": "",
+        "position": 7,
+        "is_visible": 1
+      }
+    ],
+    "tiles": [
+      {
+        "tile": {
+          "delay": ".4",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 0,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner1.png",
+            "data_logo": "01",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner2.png",
+            "data_logo": "02",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner3.png",
+            "data_logo": "03",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".6",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 1,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner7.png",
+            "data_logo": "07",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner8.png",
+            "data_logo": "08",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner1.png",
+            "data_logo": "09",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".6",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 2,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner3.png",
+            "data_logo": "03",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner4.png",
+            "data_logo": "04",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner5.png",
+            "data_logo": "05",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".7",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 3,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner4.png",
+            "data_logo": "04",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner5.png",
+            "data_logo": "05",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner6.png",
+            "data_logo": "06",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".4",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 4,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner5.png",
+            "data_logo": "05",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner6.png",
+            "data_logo": "06",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner7.png",
+            "data_logo": "07",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".5",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 5,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner6.png",
+            "data_logo": "06",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner7.png",
+            "data_logo": "07",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner8.png",
+            "data_logo": "08",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".5",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 6,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner2.png",
+            "data_logo": "02",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner3.png",
+            "data_logo": "03",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner4.png",
+            "data_logo": "04",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".7",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 7,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner8.png",
+            "data_logo": "08",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner1.png",
+            "data_logo": "09",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner2.png",
+            "data_logo": "10",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".6",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 8,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner1.png",
+            "data_logo": "09",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner2.png",
+            "data_logo": "10",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner3.png",
+            "data_logo": "01",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      },
+      {
+        "tile": {
+          "delay": ".7",
+          "fade_from": "bottom",
+          "ease": "bounce",
+          "position": 9,
+          "is_visible": 1
+        },
+        "slides": [
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner2.png",
+            "data_logo": "10",
+            "position": 0,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner3.png",
+            "data_logo": "01",
+            "position": 1,
+            "is_visible": 1
+          },
+          {
+            "image": "https://iamsreelalck.com/uploads/client/thumb_partner4.png",
+            "data_logo": "02",
+            "position": 2,
+            "is_visible": 1
+          }
+        ]
+      }
+    ]
+  },
+  "settings": [
+    {
+      "key": "brands_heading",
+      "label": "Brand wall heading",
+      "description": "The small uppercase line above the intro, on the homepage.",
+      "value": "15+ brands collaborated with",
+      "multiline": 0,
+      "position": 0,
+      "is_visible": 1
+    },
+    {
+      "key": "brands_intro",
+      "label": "Brand wall intro",
+      "description": "The sentence beside the homepage logo grid.",
+      "value": "Sreelal C K is a UI/UX Designer crafting responsive, user-centered digital experiences for web and mobile applications.",
+      "multiline": 1,
+      "position": 1,
+      "is_visible": 1
+    }
+  ],
+  "services": [
+    {
+      "section": {
+        "slug": "brand",
+        "label": "Brand",
+        "name": "UI/UX Design",
+        "tag": "Research · user flows · interfaces",
+        "description": "User-centered interface design for web and mobile, grounded in UX research, competitor analysis and user journey mapping.",
+        "thumb_image": "images/sec-2-project-2.webp",
+        "preview_image": "images/sec-2-project-2.webp",
+        "visual_image": "images/sec-2-project-2.webp",
+        "visual_alt": "Brand systems work",
+        "link_label": "Start a project",
+        "link_url": "contact.html",
+        "aside_label_1": "Scope",
+        "aside_value_1": "Scoped per project",
+        "aside_label_2": "Best when",
+        "aside_value_2": "New products, redesigns, or usability problems",
+        "position": 0,
+        "is_visible": 1
+      },
+      "items": [
+        {
+          "text": "UX research",
+          "link": "",
+          "icon": "",
+          "position": 0,
+          "is_visible": 1
+        },
+        {
+          "text": "Competitor analysis",
+          "link": "",
+          "icon": "",
+          "position": 1,
+          "is_visible": 1
+        },
+        {
+          "text": "User journey maps",
+          "link": "",
+          "icon": "",
+          "position": 2,
+          "is_visible": 1
+        },
+        {
+          "text": "Information architecture",
+          "link": "",
+          "icon": "",
+          "position": 3,
+          "is_visible": 1
+        },
+        {
+          "text": "Usability improvements",
+          "link": "",
+          "icon": "",
+          "position": 4,
+          "is_visible": 1
+        },
+        {
+          "text": "Accessibility pass",
+          "link": "",
+          "icon": "",
+          "position": 5,
+          "is_visible": 1
+        }
+      ]
+    },
+    {
+      "section": {
+        "slug": "product",
+        "label": "Product",
+        "name": "Web & Mobile Design",
+        "tag": "Responsive web · mobile apps",
+        "description": "Responsive websites and mobile app interfaces for corporate, e-commerce and service platforms — built in Figma and Adobe XD.",
+        "thumb_image": "images/sec-4-project-2.webp",
+        "preview_image": "images/sec-4-project-2.webp",
+        "visual_image": "images/sec-4-project-2.webp",
+        "visual_alt": "Product design interface",
+        "link_label": "Start a project",
+        "link_url": "contact.html",
+        "aside_label_1": "Scope",
+        "aside_value_1": "Scoped per project",
+        "aside_label_2": "Best when",
+        "aside_value_2": "Launching or rebuilding a site or app",
+        "position": 1,
+        "is_visible": 1
+      },
+      "items": [
+        {
+          "text": "Responsive web UI",
+          "link": "",
+          "icon": "",
+          "position": 0,
+          "is_visible": 1
+        },
+        {
+          "text": "Mobile app UI",
+          "link": "",
+          "icon": "",
+          "position": 1,
+          "is_visible": 1
+        },
+        {
+          "text": "E-commerce screens",
+          "link": "",
+          "icon": "",
+          "position": 2,
+          "is_visible": 1
+        },
+        {
+          "text": "Corporate platforms",
+          "link": "",
+          "icon": "",
+          "position": 3,
+          "is_visible": 1
+        },
+        {
+          "text": "Pixel-perfect handoff",
+          "link": "",
+          "icon": "",
+          "position": 4,
+          "is_visible": 1
+        },
+        {
+          "text": "Visual QA",
+          "link": "",
+          "icon": "",
+          "position": 5,
+          "is_visible": 1
+        }
+      ]
+    },
+    {
+      "section": {
+        "slug": "web",
+        "label": "Web",
+        "name": "Wireframing & Prototyping",
+        "tag": "Wireframes · flows · prototypes",
+        "description": "Low-fidelity structure first: information architecture, user flows and interactive prototypes that validate ideas before visual design.",
+        "thumb_image": "images/sec-4-project-3.webp",
+        "preview_image": "images/sec-4-project-3.webp",
+        "visual_image": "images/sec-4-project-3.webp",
+        "visual_alt": "Web campaign layout",
+        "link_label": "Start a project",
+        "link_url": "contact.html",
+        "aside_label_1": "Scope",
+        "aside_value_1": "Scoped per project",
+        "aside_label_2": "Best when",
+        "aside_value_2": "Validating structure before UI work begins",
+        "position": 2,
+        "is_visible": 1
+      },
+      "items": [
+        {
+          "text": "Information architecture",
+          "link": "",
+          "icon": "",
+          "position": 0,
+          "is_visible": 1
+        },
+        {
+          "text": "User flows",
+          "link": "",
+          "icon": "",
+          "position": 1,
+          "is_visible": 1
+        },
+        {
+          "text": "Low-fi wireframes",
+          "link": "",
+          "icon": "",
+          "position": 2,
+          "is_visible": 1
+        },
+        {
+          "text": "Interactive prototypes",
+          "link": "",
+          "icon": "",
+          "position": 3,
+          "is_visible": 1
+        },
+        {
+          "text": "Navigation optimization",
+          "link": "",
+          "icon": "",
+          "position": 4,
+          "is_visible": 1
+        },
+        {
+          "text": "CTA placement",
+          "link": "",
+          "icon": "",
+          "position": 5,
+          "is_visible": 1
+        }
+      ]
+    },
+    {
+      "section": {
+        "slug": "motion",
+        "label": "Motion",
+        "name": "Design Systems",
+        "tag": "Components · tokens · guidelines",
+        "description": "Reusable component libraries and design tokens so teams ship consistent, accessible interfaces without rebuilding the basics each sprint.",
+        "thumb_image": "images/img-8.webp",
+        "preview_image": "images/img-8.webp",
+        "visual_image": "images/img-8.webp",
+        "visual_alt": "Motion design still",
+        "link_label": "Start a project",
+        "link_url": "contact.html",
+        "aside_label_1": "Scope",
+        "aside_value_1": "Scoped per project",
+        "aside_label_2": "Best when",
+        "aside_value_2": "Multiple products need one consistent UI",
+        "position": 3,
+        "is_visible": 1
+      },
+      "items": [
+        {
+          "text": "Component library",
+          "link": "",
+          "icon": "",
+          "position": 0,
+          "is_visible": 1
+        },
+        {
+          "text": "Type & colour tokens",
+          "link": "",
+          "icon": "",
+          "position": 1,
+          "is_visible": 1
+        },
+        {
+          "text": "Interaction patterns",
+          "link": "",
+          "icon": "",
+          "position": 2,
+          "is_visible": 1
+        },
+        {
+          "text": "Usage guidelines",
+          "link": "",
+          "icon": "",
+          "position": 3,
+          "is_visible": 1
+        },
+        {
+          "text": "Figma libraries",
+          "link": "",
+          "icon": "",
+          "position": 4,
+          "is_visible": 1
+        },
+        {
+          "text": "Developer handoff",
+          "link": "",
+          "icon": "",
+          "position": 5,
+          "is_visible": 1
+        }
+      ]
+    },
+    {
+      "section": {
+        "slug": "growth",
+        "label": "Growth",
+        "name": "Branding & Visual Identity",
+        "tag": "Logo · identity · digital & print",
+        "description": "Logo, colour, typography and a complete brand system applied consistently across digital and print, with guidelines to keep it that way.",
+        "thumb_image": "images/sec-4-project-4.webp",
+        "preview_image": "images/sec-4-project-4.webp",
+        "visual_image": "images/sec-4-project-4.webp",
+        "visual_alt": "Growth design operations",
+        "link_label": "Start a project",
+        "link_url": "contact.html",
+        "aside_label_1": "Scope",
+        "aside_value_1": "Scoped per project",
+        "aside_label_2": "Best when",
+        "aside_value_2": "A brand needs one consistent visual language",
+        "position": 4,
+        "is_visible": 1
+      },
+      "items": [
+        {
+          "text": "Logo design",
+          "link": "",
+          "icon": "",
+          "position": 0,
+          "is_visible": 1
+        },
+        {
+          "text": "Colour & typography",
+          "link": "",
+          "icon": "",
+          "position": 1,
+          "is_visible": 1
+        },
+        {
+          "text": "Brand guidelines",
+          "link": "",
+          "icon": "",
+          "position": 2,
+          "is_visible": 1
+        },
+        {
+          "text": "Business cards & stationery",
+          "link": "",
+          "icon": "",
+          "position": 3,
+          "is_visible": 1
+        },
+        {
+          "text": "Social templates",
+          "link": "",
+          "icon": "",
+          "position": 4,
+          "is_visible": 1
+        },
+        {
+          "text": "Marketing creatives",
+          "link": "",
+          "icon": "",
+          "position": 5,
+          "is_visible": 1
+        }
+      ]
+    }
+  ],
+  "portfolio": {
+    "categories": [
+      {
+        "name": "E-Commerce & Retail",
+        "slug": "ecommerce",
+        "position": 0,
+        "is_visible": 1
+      },
+      {
+        "name": "Corporate & Enterprise",
+        "slug": "corporate",
+        "position": 1,
+        "is_visible": 1
+      },
+      {
+        "name": "Education & Healthcare",
+        "slug": "learning",
+        "position": 2,
+        "is_visible": 1
+      },
+      {
+        "name": "Mobile Applications",
+        "slug": "mobile",
+        "position": 3,
+        "is_visible": 1
+      },
+      {
+        "name": "Branding",
+        "slug": "branding",
+        "position": 4,
+        "is_visible": 1
+      }
+    ],
+    "projects": [
+      {
+        "title": "Spunk Systems",
+        "slug": "spunk-systems",
+        "category_slug": "branding",
+        "short_description": "Brand identity for an IT consulting and managed services firm — logo, colour, typography and a complete brand system across digital and print.",
+        "full_description": "Brand identity for an IT consulting and managed services firm — logo, colour, typography and a complete brand system across digital and print.",
+        "cover_image": "images/img-45.webp",
+        "cover_alt": "Spunk Systems",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://iamsreelalck.com/project/branding-and-digital-presence",
+        "open_in_new_tab": 0,
+        "category_label": "Branding",
+        "badge_text": "FEATURED CASE",
+        "cta_label": "View case",
+        "position": 0,
+        "is_visible": 1,
+        "live_demo_url": "https://iamsreelalck.com/project/branding-and-digital-presence",
+        "live_demo_label": "live demo",
+        "related_image": "images/img-184.webp",
+        "related_slugs_json": "[]",
+        "page_title": "Spunk Systems — Branding Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Branding",
+        "hero_image": "images/img-45.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "Krooqi",
+        "slug": "krooqi",
+        "category_slug": "mobile",
+        "short_description": "Online platform to discover residential rental properties — intuitive user flows, responsive layouts and interactive prototypes for mobile and desktop.",
+        "full_description": "As the UI/UX Designer for Krooqi, I was responsible for crafting a clean, user-friendly interface that simplifies the process of finding and renting residential properties. I designed intuitive user flows, responsive layouts and interactive prototypes, ensuring a smooth experience across mobile and desktop.",
+        "cover_image": "images/img-46.webp",
+        "cover_alt": "Krooqi",
+        "gallery_json": "[{\"src\":\"images/img-177.webp\",\"alt\":\"Sreelal C K\"},{\"src\":\"images/img-176.webp\",\"alt\":\"Sreelal C K\"},{\"src\":\"images/img-178.webp\",\"alt\":\"Sreelal C K\"},{\"src\":\"images/img-179.webp\",\"alt\":\"Sreelal C K\"},{\"src\":\"images/img-180.webp\",\"alt\":\"Sreelal C K\"}]",
+        "client_name": "Ewaantech",
+        "year": "2021",
+        "link": "portfolio-details.html",
+        "open_in_new_tab": 0,
+        "category_label": "Real Estate UX",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 1,
+        "is_visible": 1,
+        "live_demo_url": "https://iamsreelalck.com/project/krooqi",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[\"spunk-systems\",\"v-perfumes\",\"hotpack-global\"]",
+        "page_title": "Krooqi — Real Estate UX Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "®",
+        "hero_subtitle": "UI/UX Design · Mobile UI · Real Estate UX",
+        "hero_image": "images/img-181.webp",
+        "secondary_image": "images/img-182.webp",
+        "role": "UI/UX Designer",
+        "solution_text": "A clean, consistent interface built around clear user flows and responsive layouts, so property discovery works the same way on mobile and desktop for both tenants and landlords.",
+        "features_json": "[\"Intuitive user flows for property search and rental enquiry\",\"Responsive layouts for mobile and desktop\",\"Interactive prototypes used to validate the experience\",\"Accessible, consistent UI for both tenants and landlords\"]",
+        "outcome_text": "The result makes property discovery fast, engaging and accessible — a rental platform that stays clear and usable at every step, on any screen size.",
+        "closing_image_1": "images/img-187.webp",
+        "closing_image_2": "images/img-188.webp",
+        "testimonial_name": "Alphan Abdul Rub"
+      },
+      {
+        "title": "V Perfumes",
+        "slug": "v-perfumes",
+        "category_slug": "ecommerce",
+        "short_description": "Luxury perfume e-commerce platform.",
+        "full_description": "Luxury perfume e-commerce platform.",
+        "cover_image": "images/img-47.webp",
+        "cover_alt": "V Perfumes",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.vperfumes.com",
+        "open_in_new_tab": 0,
+        "category_label": "E-Commerce",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 2,
+        "is_visible": 1,
+        "live_demo_url": "https://www.vperfumes.com",
+        "live_demo_label": "live demo",
+        "related_image": "images/img-185.webp",
+        "related_slugs_json": "[]",
+        "page_title": "V Perfumes — E-Commerce Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "E-Commerce",
+        "hero_image": "images/img-47.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "The Fresh Market Dubai",
+        "slug": "the-fresh-market-dubai",
+        "category_slug": "ecommerce",
+        "short_description": "Fresh produce and grocery retailer.",
+        "full_description": "Fresh produce and grocery retailer.",
+        "cover_image": "images/img-48.webp",
+        "cover_alt": "The Fresh Market Dubai",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.thefreshmarketdubai.com",
+        "open_in_new_tab": 0,
+        "category_label": "E-Commerce",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 3,
+        "is_visible": 1,
+        "live_demo_url": "https://www.thefreshmarketdubai.com",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "The Fresh Market Dubai — E-Commerce Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "E-Commerce",
+        "hero_image": "images/img-48.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "Fresh Fruit Mart",
+        "slug": "fresh-fruit-mart",
+        "category_slug": "ecommerce",
+        "short_description": "Online fruit delivery.",
+        "full_description": "Online fruit delivery.",
+        "cover_image": "images/img-49.webp",
+        "cover_alt": "Fresh Fruit Mart",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.freshfruitmart.ae",
+        "open_in_new_tab": 0,
+        "category_label": "E-Commerce",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 4,
+        "is_visible": 1,
+        "live_demo_url": "https://www.freshfruitmart.ae",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "Fresh Fruit Mart — E-Commerce Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "E-Commerce",
+        "hero_image": "images/img-49.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "Al Saafah Dates",
+        "slug": "al-saafah-dates",
+        "category_slug": "ecommerce",
+        "short_description": "Premium dates retailer.",
+        "full_description": "Premium dates retailer.",
+        "cover_image": "images/img-81.webp",
+        "cover_alt": "Al Saafah Dates",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "#",
+        "open_in_new_tab": 0,
+        "category_label": "E-Commerce",
+        "badge_text": "",
+        "cta_label": "Project",
+        "position": 5,
+        "is_visible": 1,
+        "live_demo_url": "",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "Al Saafah Dates — E-Commerce Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "E-Commerce",
+        "hero_image": "images/img-81.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "Al Ershad Online",
+        "slug": "al-ershad-online",
+        "category_slug": "ecommerce",
+        "short_description": "Electronics and IT retailer.",
+        "full_description": "Electronics and IT retailer.",
+        "cover_image": "images/img-82.webp",
+        "cover_alt": "Al Ershad Online",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.alershadonline.com",
+        "open_in_new_tab": 0,
+        "category_label": "E-Commerce",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 6,
+        "is_visible": 1,
+        "live_demo_url": "https://www.alershadonline.com",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "Al Ershad Online — E-Commerce Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "E-Commerce",
+        "hero_image": "images/img-82.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "Hotpack Global",
+        "slug": "hotpack-global",
+        "category_slug": "corporate",
+        "short_description": "Global packaging solutions brand.",
+        "full_description": "Global packaging solutions brand.",
+        "cover_image": "images/img-83.webp",
+        "cover_alt": "Hotpack Global",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.hotpackglobal.com",
+        "open_in_new_tab": 0,
+        "category_label": "Corporate",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 7,
+        "is_visible": 1,
+        "live_demo_url": "https://www.hotpackglobal.com",
+        "live_demo_label": "live demo",
+        "related_image": "images/img-186.webp",
+        "related_slugs_json": "[]",
+        "page_title": "Hotpack Global — Corporate Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Corporate",
+        "hero_image": "images/img-83.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "Empower e-Services",
+        "slug": "empower-e-services",
+        "category_slug": "corporate",
+        "short_description": "Utility billing and payment portal.",
+        "full_description": "Utility billing and payment portal.",
+        "cover_image": "images/img-84.webp",
+        "cover_alt": "Empower e-Services",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://e-services.empower.ae",
+        "open_in_new_tab": 0,
+        "category_label": "Corporate",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 8,
+        "is_visible": 1,
+        "live_demo_url": "https://e-services.empower.ae",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "Empower e-Services — Corporate Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Corporate",
+        "hero_image": "images/img-84.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "SEDCO",
+        "slug": "sedco",
+        "category_slug": "corporate",
+        "short_description": "Self-service solutions.",
+        "full_description": "Self-service solutions.",
+        "cover_image": "images/img-126.webp",
+        "cover_alt": "SEDCO",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.sedco.co",
+        "open_in_new_tab": 0,
+        "category_label": "Corporate",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 9,
+        "is_visible": 1,
+        "live_demo_url": "https://www.sedco.co",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "SEDCO — Corporate Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Corporate",
+        "hero_image": "images/img-126.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "DaleelX",
+        "slug": "daleelx",
+        "category_slug": "learning",
+        "short_description": "Digital learning and training platform.",
+        "full_description": "Digital learning and training platform.",
+        "cover_image": "images/img-130.webp",
+        "cover_alt": "DaleelX",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.daleelx.com",
+        "open_in_new_tab": 0,
+        "category_label": "Education",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 10,
+        "is_visible": 1,
+        "live_demo_url": "https://www.daleelx.com",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "DaleelX — Education Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Education",
+        "hero_image": "images/img-130.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "Yateem Optician",
+        "slug": "yateem-optician",
+        "category_slug": "learning",
+        "short_description": "Optical retail chain in the GCC.",
+        "full_description": "Optical retail chain in the GCC.",
+        "cover_image": "images/img-131.webp",
+        "cover_alt": "Yateem Optician",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "https://www.yateem.com",
+        "open_in_new_tab": 0,
+        "category_label": "Healthcare",
+        "badge_text": "",
+        "cta_label": "View case",
+        "position": 11,
+        "is_visible": 1,
+        "live_demo_url": "https://www.yateem.com",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "Yateem Optician — Healthcare Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Healthcare",
+        "hero_image": "images/img-131.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "The Laundry Hub",
+        "slug": "the-laundry-hub",
+        "category_slug": "mobile",
+        "short_description": "Premium laundry service app.",
+        "full_description": "Premium laundry service app.",
+        "cover_image": "images/img-132.webp",
+        "cover_alt": "The Laundry Hub",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "#",
+        "open_in_new_tab": 0,
+        "category_label": "Mobile App",
+        "badge_text": "",
+        "cta_label": "Project",
+        "position": 12,
+        "is_visible": 1,
+        "live_demo_url": "",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "The Laundry Hub — Mobile App Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Mobile App",
+        "hero_image": "images/img-132.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      },
+      {
+        "title": "MamaMe",
+        "slug": "mamame",
+        "category_slug": "mobile",
+        "short_description": "E-commerce platform for moms and babies.",
+        "full_description": "E-commerce platform for moms and babies.",
+        "cover_image": "images/img-133.webp",
+        "cover_alt": "MamaMe",
+        "gallery_json": "[]",
+        "client_name": "",
+        "year": "",
+        "link": "#",
+        "open_in_new_tab": 0,
+        "category_label": "Mobile App",
+        "badge_text": "",
+        "cta_label": "Project",
+        "position": 13,
+        "is_visible": 1,
+        "live_demo_url": "",
+        "live_demo_label": "live demo",
+        "related_image": "",
+        "related_slugs_json": "[]",
+        "page_title": "MamaMe — Mobile App Case Study | Sreelal C K",
+        "meta_description": "Sreelal C K is a UI/UX Designer based in the UAE, specializing in user-centered web and mobile experiences, e-commerce design, visual design, branding, wireframing, prototyping, and design systems.",
+        "hero_superscript": "",
+        "hero_subtitle": "Mobile App",
+        "hero_image": "images/img-133.webp",
+        "secondary_image": "",
+        "role": "UI/UX Designer",
+        "solution_text": "",
+        "features_json": "[]",
+        "outcome_text": "",
+        "closing_image_1": "",
+        "closing_image_2": ""
+      }
+    ]
+  }
+}

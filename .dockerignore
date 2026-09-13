@@ -1,0 +1,12 @@
+node_modules
+data
+.env
+.git
+.gitignore
+*.log
+*.zip
+IAMSREE.orig
+IAMSREE/images/uploads
+README.md
+Dockerfile
+.dockerignore

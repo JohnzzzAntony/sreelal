@@ -1,0 +1,80 @@
+/*
+ * Site overrides.
+ *
+ * Added alongside the original stylesheets rather than editing them, so
+ * main.css stays exactly as it shipped. Loaded only by the pages that need it.
+ *
+ * Problem this solves: the portfolio cover images were exported at seven
+ * different aspect ratios (770x560, 101x272, 499x310, 435x431, 435x509,
+ * 435x552, 435x336). The card markup sizes the image with `w-100` and no
+ * height, so every card took the shape of its own image and the grid came out
+ * ragged. Pinning one ratio and cropping to fill makes every card identical
+ * regardless of what is uploaded later.
+ */
+
+/* The ratio the majority of the covers were exported at (770 x 560). */
+:root {
+    --card-thumb-ratio: 770 / 560;
+}
+
+/* ------------------------------------------------- portfolio page: the grid */
+.alt-portfolio-item.card-portfolio .alt-portfolio-thumb {
+    display: block;
+    overflow: hidden;
+}
+
+.alt-portfolio-item.card-portfolio .alt-portfolio-thumb > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--card-thumb-ratio);
+    object-fit: cover;
+    object-position: center;
+}
+
+/*
+ * Cards in a row become equal height and their footers line up, so the
+ * "View case" row sits on one baseline across the grid even when a title wraps.
+ */
+.alt-portfolio-item.card-portfolio {
+    display: flex;
+    flex-direction: column;
+}
+
+.alt-portfolio-item.card-portfolio .alt-portfolio-content {
+    margin-top: auto;
+}
+
+/*
+ * The overlay caption is anchored to the bottom of the image. Without a bound
+ * it can outgrow a shorter card and get clipped mid-sentence.
+ */
+.alt-portfolio-item.card-portfolio .alt-portfolio-btn {
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* ------------------------------------ project detail page: related projects */
+.sec-2-portfolio-details-1 .alt-portfolio-item .alt-portfolio-thumb {
+    display: block;
+    overflow: hidden;
+}
+
+.sec-2-portfolio-details-1 .alt-portfolio-item .alt-portfolio-thumb > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--card-thumb-ratio);
+    object-fit: cover;
+    object-position: center;
+}
+
+.sec-2-portfolio-details-1 .alt-portfolio-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sec-2-portfolio-details-1 .alt-portfolio-item .alt-portfolio-content {
+    margin-top: auto;
+}

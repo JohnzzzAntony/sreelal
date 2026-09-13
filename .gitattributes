@@ -1,0 +1,9 @@
+# Shell scripts must keep LF endings. A CRLF shebang makes Linux report
+# "bad interpreter" and the container fails to start, so this is not cosmetic.
+*.sh text eol=lf
+docker-entrypoint.sh text eol=lf
+
+# Same reasoning for files the container reads as configuration.
+Dockerfile text eol=lf
+*.toml text eol=lf
+deploy/* text eol=lf

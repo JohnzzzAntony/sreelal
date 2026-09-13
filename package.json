@@ -1,0 +1,34 @@
+{
+  "name": "iamsree-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sreelal C K portfolio site with admin panel",
+  "main": "app/server.js",
+  "scripts": {
+    "start": "node app/server.js",
+    "dev": "node --watch app/server.js",
+    "db:migrate": "node app/db/migrate.js",
+    "db:seed": "node app/db/seed.js",
+    "setup": "node app/db/migrate.js && node app/db/seed.js",
+    "verify": "node tools/verify-parity.js",
+    "hash": "node tools/hash-password.js",
+    "build:templates": "node tools/extract-content.js && node tools/build-templates.js",
+    "db:fill-details": "node app/db/fill-details.js",
+    "build:static": "node tools/build-static.js",
+    "verify:static": "node tools/verify-static.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}

@@ -1,0 +1,19 @@
+# Railway configuration.
+#
+# Railway injects PORT and terminates TLS in front of the container, so the app
+# runs with TRUST_PROXY=1 (set in the Dockerfile) to read X-Forwarded-Proto.
+# Without that the session cookie - which is `secure` in production - is never
+# issued and the admin login fails with a 403.
+#
+# The volume is not optional. Attach one mounted at /data before the first
+# deploy, or the database and every uploaded image are lost on each restart.
+
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# SQLite is a single file on one volume, so exactly one instance may write to it.
+numReplicas = 1
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3

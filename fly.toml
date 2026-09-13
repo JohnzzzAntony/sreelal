@@ -1,0 +1,42 @@
+# Fly.io configuration.
+#
+# Deploy with:
+#   fly launch --no-deploy --name <your-app-name>   (once, to create the app)
+#   fly volumes create iamsree_data --size 1 --region <region>
+#   fly secrets set SESSION_SECRET=... ADMIN_PASSWORD_HASH='...'
+#   fly deploy
+#
+# The volume is the important part: without it the database and every uploaded
+# image are lost on each restart.
+
+app = "iamsree"
+primary_region = "fra"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  TRUST_PROXY = "1"
+  PORT = "8080"
+  DATABASE_PATH = "/data/site.db"
+  UPLOAD_DIR = "/data/uploads"
+  UPLOAD_URL_PREFIX = "images/uploads"
+
+# Persistent storage for the database and uploads.
+[[mounts]]
+  source = "iamsree_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # A single machine, because SQLite is a file on one volume. Scaling out would
+  # need a shared database instead.
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
