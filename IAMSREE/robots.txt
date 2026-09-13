@@ -1,0 +1,27 @@
+# robots.txt for https://www.iamsreelalck.com/
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin-assets/
+
+# AI & LLM Search Engine Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap
+Sitemap: https://www.iamsreelalck.com/sitemap.xml

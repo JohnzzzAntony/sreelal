@@ -2,6 +2,7 @@
 
 const express = require('express');
 const session = require('express-session');
+const compression = require('compression');
 const path = require('path');
 
 const { config, validate } = require('./config');
@@ -15,6 +16,9 @@ validate();
 migrate();
 
 const app = express();
+
+// High-performance gzip/brotli response compression
+app.use(compression());
 
 app.set('view engine', 'ejs');
 app.set('views', config.paths.views);

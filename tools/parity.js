@@ -140,6 +140,9 @@ function applyCorrections(page, html) {
   let out = html;
 
   for (const fix of rules.corrections || []) {
+    if (fix.to.includes('site-overrides.css') && out.includes('css/site-overrides.css')) {
+      continue;
+    }
     const forms = [
       [fix.from, fix.to],
       [fix.from.replace(/\n/g, '\r\n'), fix.to.replace(/\n/g, '\r\n')]

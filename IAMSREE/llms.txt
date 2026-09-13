@@ -1,0 +1,124 @@
+# Sreelal C K — Senior UI/UX Designer & Product Designer
+
+> User-centered digital experiences for web and mobile applications across the UAE and GCC. Specializing in UI/UX Design, Design Systems, E-Commerce, Mobile Applications, and Visual Branding.
+
+- Name: Sreelal C K
+- Role: Senior UI/UX Designer & Product Designer
+- Location: Sharjah / Dubai, United Arab Emirates
+- Website: https://www.iamsreelalck.com
+- Email: sreelalck04@gmail.com
+- Phone: +971 52 1212 964
+- LinkedIn: https://www.linkedin.com/in/iamsreelalck/
+- Experience: 4+ Years designing responsive web, mobile apps, and enterprise design systems
+
+---
+
+## Core Services
+
+1. **UI / UX Design**: User research, persona mapping, information architecture, wireframing, high-fidelity prototypes, usability testing, and interaction design.
+2. **Web & Mobile Design**: Responsive websites, native iOS & Android app interfaces, fluid layout grids, micro-interactions, and touch-first ergonomics.
+3. **Design Systems**: Reusable component libraries, design tokens, typography scales, Figma atomic design structures, and developer handoff guidelines.
+4. **Wireframing & Prototyping**: Low-fidelity structural wireframes, clickable user flows, interactive micro-animations, and client validation walkthroughs.
+5. **Branding & Visual Identity**: Logo design, typography pairing, brand guidelines, corporate identity suites, social media kits, and marketing collateral.
+
+---
+
+## Featured Case Studies & Portfolio Projects
+
+1. **Spunk Systems**
+   - Category: IT Consulting & Branding
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=spunk-systems
+   - Focus: Enterprise IT brand identity, scalable logo mark, digital design tokens, and corporate collateral.
+   - Outcome: +45% brand recognition, unified brand presence across global enterprise client operations.
+
+2. **Krooqi**
+   - Category: Real Estate UX & Mobile App
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=krooqi
+   - Focus: Property rental discovery platform, map-based filtering, virtual tours, and tenant-landlord dual portals.
+   - Outcome: +60% session duration, 35% reduction in listing bounce rate.
+
+3. **V Perfumes**
+   - Category: Luxury Fragrance E-Commerce
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=v-perfumes
+   - Focus: Sensory scent family navigation, interactive fragrance notes pyramid, 2-step mobile checkout.
+   - Outcome: +42% mobile conversion rate, +28% average order value.
+
+4. **The Fresh Market Dubai**
+   - Category: Online Grocery & Fresh Produce E-Commerce
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=the-fresh-market-dubai
+   - Focus: Rapid grocery reordering, weight-based pricing, temperature-sensitive delivery scheduling.
+   - Outcome: +55% repeat weekly orders, sub-90s checkout time.
+
+5. **Fresh Fruit Mart**
+   - Category: Fresh Fruit Delivery & Subscription
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=fresh-fruit-mart
+   - Focus: "Build Your Own Box" customizer, automated recurring subscriptions, corporate fruit delivery.
+   - Outcome: +68% subscription sign-ups, +30% average basket size.
+
+6. **Al Saafah Dates**
+   - Category: Heritage Luxury Dates & Corporate Gifting
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=al-saafah-dates
+   - Focus: Bespoke gift box configurator, B2B multi-address bulk gifting, Arabian heritage luxury aesthetic.
+   - Outcome: +210% seasonal corporate gifting revenue growth.
+
+7. **Al Ershad Online**
+   - Category: Consumer Electronics & IT Hardware E-Commerce
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=al-ershad-online
+   - Focus: 15,000+ SKU faceted search, side-by-side technical spec comparison, PC part compatibility checker.
+   - Outcome: -38% search bounce rate, +75% spec comparison engagement.
+
+8. **Hotpack Global**
+   - Category: Sustainable Packaging Enterprise Portal & B2B
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=hotpack-global
+   - Focus: Global enterprise packaging catalog spanning 100+ countries, eco-impact calculator, B2B wholesale quotation engine.
+   - Outcome: Unified 12 international portals under one design system, +50% wholesale leads.
+
+9. **Empower e-Services**
+   - Category: District Cooling Utility Billing & Self-Service
+   - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=empower-e-services
+   - Focus: 1-Click Quick Pay, interactive energy telemetry, paperless move-in/move-out clearance certificates.
+   - Outcome: -48% call center queries, >85% digital payment adoption.
+
+10. **SEDCO**
+    - Category: Digital Branch Transformation & Smart Kiosks
+    - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=sedco
+    - Focus: Interactive customer journey showcases, branch ROI calculator, self-service banking kiosk UI.
+    - Outcome: +62% enterprise demo inquiries, 3.5x whitepaper downloads.
+
+11. **DaleelX**
+    - Category: EdTech & Corporate Learning Platform
+    - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=daleelx
+    - Focus: Bite-sized interactive lesson UI, synchronized video notes, gamified milestone badges, HR analytics.
+    - Outcome: Course completion rate jumped from 22% to 64%.
+
+12. **Yateem Optician**
+    - Category: Luxury Eyewear & Clinical Eye Care
+    - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=yateem-optician
+    - Focus: AR virtual glasses try-on, clinical optometrist appointment scheduler, digital prescription wallet.
+    - Outcome: +52% online clinical appointment bookings, +35% luxury frame inquiries.
+
+13. **The Laundry Hub**
+    - Category: On-Demand Dry Cleaning & Laundry Mobile App
+    - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=the-laundry-hub
+    - Focus: 3-Tap pickup scheduling, visual garment selector, real-time driver GPS tracking.
+    - Outcome: Average booking under 45s, 4.9-star app store rating, 88% customer retention.
+
+14. **MamaMe**
+    - Category: Maternity & Baby Care Mobile App
+    - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=mamame
+    - Focus: Age-adaptive nursery essentials feed, one-handed mobile navigation, moderated mother support forums.
+    - Outcome: 50,000+ monthly active parents, 72% 30-day retention.
+
+15. **Karji Perfumes**
+    - Category: Luxury Fragrance E-Commerce & Retail
+    - URL: https://www.iamsreelalck.com/portfolio-details.html?slug=karji
+    - Focus: Olfactive scent wheel, interactive luxury gift curation, localized UAE payment methods, and omnichannel store stock finder.
+    - Outcome: +34% mobile conversion rate, 28% reduction in checkout abandonment.
+
+---
+
+## Client Testimonials
+
+- **Alphan Abdul Rub** (Asharaf Rasheed SPC): "Working with Sreelal CK was an absolute pleasure. He brought a clear design vision and creative energy to my branding project, and the results far exceeded my expectations."
+- **Maria Ashraf** (makeMAimage): "Sreelal CK did an excellent job on our website and logo design. He quickly understood our vision and delivered a clean, modern, and user-friendly result."
+- **Mujahid Kutty** (Masrooq Trading LLC): "His designs were creative, professional, and perfectly aligned with our brand’s identity. From concept to execution, he brought fresh ideas and delivered a cohesive branding package that truly stands out."

@@ -3,9 +3,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="<%- esc(project.meta_description) %>">
+    <meta name="author" content="Sreelal C K">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="geo.region" content="AE-SH">
+    <meta name="geo.placename" content="Sharjah, United Arab Emirates">
     <title><%- esc(project.page_title) %></title>
+    <link rel="canonical" href="https://www.iamsreelalck.com/<%- esc(detailUrl(project)) %>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="<%- esc(project.page_title) %>">
+    <meta property="og:description" content="<%- esc(project.meta_description) %>">
+    <meta property="og:url" content="https://www.iamsreelalck.com/<%- esc(detailUrl(project)) %>">
+    <meta property="og:image" content="https://www.iamsreelalck.com/<%- esc(project.hero_image || project.cover_image) %>">
+    <meta property="og:site_name" content="Sreelal C K — UI/UX Designer Portfolio">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%- esc(project.page_title) %>">
+    <meta name="twitter:description" content="<%- esc(project.meta_description) %>">
+    <meta name="twitter:image" content="https://www.iamsreelalck.com/<%- esc(project.hero_image || project.cover_image) %>">
+
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.svg">
+
+    <!-- Resource Hints & Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="fonts/fa-light-300.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Libs CSS -->
     <link rel="stylesheet" href="css/carouselTicker.css">
@@ -21,6 +49,30 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/site-overrides.css">
 
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "headline": <%- JSON.stringify(project.title) %>,
+      "name": <%- JSON.stringify(project.page_title) %>,
+      "description": <%- JSON.stringify(project.meta_description) %>,
+      "image": "https://www.iamsreelalck.com/<%- esc(project.hero_image || project.cover_image) %>",
+      "author": {
+        "@type": "Person",
+        "name": "Sreelal C K",
+        "url": "https://www.iamsreelalck.com",
+        "jobTitle": "Senior UI/UX Designer"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Sreelal C K"
+      },
+      "genre": <%- JSON.stringify(project.category_label) %>,
+      "keywords": <%- JSON.stringify(project.category_label + ', UI/UX Design, Case Study, Product Design, ' + project.title) %>,
+      "mainEntityOfPage": "https://www.iamsreelalck.com/<%- esc(detailUrl(project)) %>"
+    }
+    </script>
 </head>
 
 <body class="at-magic-cursor">
@@ -320,14 +372,14 @@
                         </div>
                         <div class="row">
                             <div class="col-12 pt-30">
-                                <img src="<%- esc(project.hero_image) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100">
+                                <img src="<%- esc(project.hero_image) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100" fetchpriority="high" decoding="async">
                             </div>
                             <div class="col-lg-8">
                                 <p class="fz-font-2xl fw-400 neutral-900 mt-60 mb-60"><%- esc(project.full_description) %></p>
                             </div>
 <% if (project.secondary_image) { -%>
                             <div class="col-lg-5 pr-100 pb-lg-0 pb-40">
-                                <img src="<%- esc(project.secondary_image) %>" alt="<%- esc(project.cover_alt || project.title) %>">
+                                <img src="<%- esc(project.secondary_image) %>" alt="<%- esc(project.cover_alt || project.title) %>" loading="lazy" decoding="async">
                             </div>
 <% } -%>
                             <div class="col-lg-7">
@@ -398,7 +450,7 @@
 <% project.gallery.forEach(function (image) { -%>
                             <div class="swiper-slide">
                                 <div class="about-me-slider-thumb at-item-anime marque">
-                                    <img class="w-100 rounded-4" src="<%- esc(image.src) %>" alt="<%- esc(image.alt || project.title) %>">
+                                    <img class="w-100 rounded-4" src="<%- esc(image.src) %>" alt="<%- esc(image.alt || project.title) %>" loading="lazy" decoding="async">
                                 </div>
                             </div>
 <% }); -%>
@@ -412,7 +464,7 @@
                                 <div class="testimonial-author d-flex align-items-start mb-0 gap-4 pb-100 w-75">
                                     <div>
                                         <div class="testimonial-left-img size-50 rounded-3 overflow-hidden">
-                                            <img src="<%- esc(project.testimonial.avatar) %>" alt="<%- esc(project.testimonial.avatar_alt) %>">
+                                            <img src="<%- esc(project.testimonial.avatar) %>" alt="<%- esc(project.testimonial.avatar_alt) %>" loading="lazy" decoding="async">
                                         </div>
                                     </div>
                                     <div class="testimonial-content">
@@ -425,12 +477,12 @@
 <% } -%>
 <% if (project.closing_image_1) { -%>
                             <div class="col-12 pb-50">
-                                <img src="<%- esc(project.closing_image_1) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100">
+                                <img src="<%- esc(project.closing_image_1) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100" loading="lazy" decoding="async">
                             </div>
 <% } -%>
 <% if (project.closing_image_2) { -%>
                             <div class="col-12">
-                                <img src="<%- esc(project.closing_image_2) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100">
+                                <img src="<%- esc(project.closing_image_2) %>" alt="<%- esc(project.cover_alt || project.title) %>" class="w-100" loading="lazy" decoding="async">
                             </div>
 <% } -%>
                         </div>
@@ -462,7 +514,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="alt-portfolio-item at-hover-item mb-30">
                                     <a href="<%- esc(detailUrl(related)) %>" class="alt-portfolio-thumb p-relative fix d-block">
-                                        <img class="w-100 scale-img-from-to" data-value-1="1.5" data-value-2="1" src="<%- esc(related.related_image || related.cover_image) %>" alt="<%- esc(related.cover_alt || related.title) %>">
+                                        <img class="w-100 scale-img-from-to" data-value-1="1.5" data-value-2="1" src="<%- esc(related.related_image || related.cover_image) %>" alt="<%- esc(related.cover_alt || related.title) %>" loading="lazy" decoding="async">
                                         <div class="alt-portfolio-btn">
                                             <div class="content">
                                                 <span class="bg-transparent text-uppercase border px-3 py-1 rounded-pill text-white fz-font-label"><%- esc(related.category_label) %></span>
