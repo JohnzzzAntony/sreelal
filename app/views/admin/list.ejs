@@ -157,9 +157,25 @@
                                 <%= index === rows.length - 1 ? 'disabled' : '' %>>↓</button>
                     </form>
 
+                    <% if (resource.key === 'brands') { %>
+                        <% if (row.usage > 0) { %>
+                            <form method="post" action="<%= adminPath %>/brands/<%= row.id %>/remove-from-grid" class="d-inline">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="admin-btn admin-btn--small" type="submit" title="Remove this logo from all grid slots">Remove from grid</button>
+                            </form>
+                        <% } else { %>
+                            <form method="post" action="<%= adminPath %>/brands/<%= row.id %>/add-to-grid" class="d-inline">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="admin-btn admin-btn--small admin-btn--primary" type="submit" title="Add this logo to the animated grid">Add to grid</button>
+                            </form>
+                        <% } %>
+                    <% } %>
+
                     <% if (resource.childResource) { %>
+                        <% const childDef = resources[resource.childResource]; %>
+                        <% const pKey = (childDef && childDef.parentKey) ? childDef.parentKey : 'section_id'; %>
                         <a class="admin-btn admin-btn--small"
-                           href="<%= adminPath %>/<%= resource.childResource %>?section_id=<%= row.id %>">
+                           href="<%= adminPath %>/<%= resource.childResource %>?<%= pKey %>=<%= row.id %>">
                             Items (<%= row.itemCount %>)
                         </a>
                     <% } %>

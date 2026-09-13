@@ -64,11 +64,71 @@ function usageCounts() {
   return new Map(rows.map((r) => [r.brand_id, r.n]));
 }
 
+/**
+ * Add a brand to the animated grid by creating slides in a balanced selection
+ * of tiles. Picks the tiles with the fewest existing slides so the grid stays
+ * even. Defaults to 3 tiles (matching the typical 3-5 appearances of the
+ * original brands).
+ *
+ * Returns the number of tiles the brand was added to.
+ */
+function distributeToGrid(brandId, count = 3) {
+  const brand = brands.find(brandId);
+  if (!brand) return 0;
+
+  // Tiles the brand already appears in - skip those.
+  const existing = new Set(
+    db
+      .all('SELECT tile_id FROM brand_tile_slides WHERE brand_id = ?', [brandId])
+      .map((r) => r.tile_id)
+  );
+
+  // All visible tiles, sorted by slide count ascending (fewest first).
+  const eligible = tiles
+    .list({ visibleOnly: true })
+    .filter((t) => !existing.has(t.id))
+    .map((t) => ({
+      ...t,
+      slideCount: db.get(
+        'SELECT COUNT(*) AS n FROM brand_tile_slides WHERE tile_id = ?',
+        [t.id]
+      ).n
+    }))
+    .sort((a, b) => a.slideCount - b.slideCount);
+
+  const toAdd = eligible.slice(0, count);
+
+  for (const tile of toAdd) {
+    const maxPos = db.get(
+      'SELECT COALESCE(MAX(position), -1) AS m FROM brand_tile_slides WHERE tile_id = ?',
+      [tile.id]
+    ).m;
+    db.run(
+      `INSERT INTO brand_tile_slides (tile_id, brand_id, data_logo, position, is_visible)
+       VALUES (?, ?, '', ?, 1)`,
+      [tile.id, brandId, maxPos + 1]
+    );
+  }
+
+  return toAdd.length;
+}
+
+/**
+ * Remove a brand from every grid slot it appears in.
+ * Returns the number of slides deleted.
+ */
+function removeFromGrid(brandId) {
+  const result = db.run('DELETE FROM brand_tile_slides WHERE brand_id = ?', [brandId]);
+  return result.changes || 0;
+}
+
 module.exports = {
   brands: {
     ...brands,
     published: () => brands.list({ visibleOnly: true }),
-    usageCounts
+    usageCounts,
+    distributeToGrid,
+    removeFromGrid
   },
   tiles: {
     ...tiles,

@@ -279,6 +279,27 @@ router.post('/:resource/reorder', (req, res) => {
   res.json({ ok: true, reordered: moved });
 });
 
+// ---------------------------------------------------------------------------
+// Brand grid shortcuts — add or remove a brand from the animated logo wall
+// ---------------------------------------------------------------------------
+router.post('/brands/:id/add-to-grid', (req, res, next) => {
+  const brand = brands.brands.find(req.params.id);
+  if (!brand) return next(Object.assign(new Error('Not found.'), { status: 404 }));
+
+  const added = brands.brands.distributeToGrid(brand.id);
+  flash(req, 'success', `"${brand.name}" added to ${added} grid slot${added === 1 ? '' : 's'}.`);
+  return res.redirect(backTo(req, resources.brands, brand));
+});
+
+router.post('/brands/:id/remove-from-grid', (req, res, next) => {
+  const brand = brands.brands.find(req.params.id);
+  if (!brand) return next(Object.assign(new Error('Not found.'), { status: 404 }));
+
+  const removed = brands.brands.removeFromGrid(brand.id);
+  flash(req, 'success', `"${brand.name}" removed from ${removed} grid slot${removed === 1 ? '' : 's'}.`);
+  return res.redirect(backTo(req, resources.brands, brand));
+});
+
 router.get('/:resource/new', blockIfFixed, (req, res) => {
   const resource = req.resource;
   const parent = parentOf(req);
